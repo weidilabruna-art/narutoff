@@ -112,11 +112,12 @@ export default async function handler(req, res) {
   }
 
   const orderBumpMap = {
-    'calca-angelical-vermelha': { title: 'Calça Angelical Vermelha', product_hash: 'da5ccrjpsk', offer_hash: 'g8oh06qgke', price: 1799 },
-    '2180-diamantes': { title: '2180 Diamantes Desconto', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i', price: 1990 },
-    'conjunto-rey-mysterio': { title: 'Conjunto Rey Mysterio', product_hash: 'btvslj6omx', offer_hash: 'ozthkiwaqr', price: 1439 },
-    'conjunto-rim': { title: 'Conjunto Rim', product_hash: 'wfme43czrb', offer_hash: 'mf4fq8todx', price: 1399 },
-    'mp5': { title: 'MP5 - Fascínio Dourado', product_hash: 'hxtlktjxfx', offer_hash: 'mbexs7wylf', price: 1782 }
+    'calca-angelical-azul': { title: 'Calça Angelical Azul', product_hash: 'da5ccrjpsk', offer_hash: 'g8oh06qgke', price: 1799 },
+    '2180-diamantes': { title: '2180 Diamantes Desconto', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i', price: 1528 },
+    'conjunto-naruto': { title: 'Conjunto Naruto', product_hash: 'btvslj6omx', offer_hash: 'ozthkiwaqr', price: 2173 },
+    'conjunto-sasuke': { title: 'Conjunto Sasuke', product_hash: 'wfme43czrb', offer_hash: 'mf4fq8todx', price: 1978 },
+    'conjunto-kakashi': { title: 'Conjunto Kakashi', product_hash: 'hxtlktjxfx', offer_hash: 'mbexs7wylf', price: 1990 },
+    'mascara-barba': { title: 'Máscara Antiga Barba do Velho', product_hash: 'syp1p8jl8m', offer_hash: 'ypwui', price: 1782 }
   };
 
   const selectedBumps = data.selected_orderbumps || [];
