@@ -72,17 +72,17 @@
     .collab-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(255,107,0,.2));border:1px solid rgba(255,107,0,.4);border-radius:999px;padding:.4rem 1.2rem;font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:.12em;color:#FFD700;text-transform:uppercase;margin-bottom:1.2rem;}
 
     /* VSL Modal */
-    .vsl-overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(4px);}
-    .vsl-inner{position:relative;width:100%;max-width:56rem;margin:0 1rem;animation:modalIn .4s ease;}
+    .vsl-overlay{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(6px);padding:1rem;box-sizing:border-box;}
+    .vsl-inner{position:relative;width:100%;max-width:380px;max-height:92vh;margin:0 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;animation:modalIn .4s ease;}
     @keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.92);}to{opacity:1;transform:translateY(0) scale(1);}}
-    .vsl-close{position:absolute;top:-3rem;right:0;color:rgba(255,255,255,.7);font-size:1rem;font-family:'Orbitron',sans-serif;display:flex;align-items:center;gap:.5rem;background:none;border:none;cursor:pointer;transition:color .2s;}
-    .vsl-close:hover{color:#fff;}
-    .vsl-video-wrap{position:relative;background:#0D0D0D;border-radius:.75rem;overflow:hidden;border:1px solid rgba(124,58,237,.4);box-shadow:0 25px 50px -12px rgba(124,58,237,.3);}
-    .vsl-video-wrap video{width:100%;display:block;}
-    .vsl-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);cursor:pointer;transition:opacity .3s;z-index:10;}
-    .vsl-play-btn{width:5rem;height:5rem;border-radius:50%;background:linear-gradient(135deg,#FF6B00,#7C3AED);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 10px 15px rgba(124,58,237,.5);transition:transform .2s;}
+    .vsl-close{position:absolute;top:10px;right:10px;z-index:30;background:rgba(0,0,0,.7);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:#fff;padding:6px 14px;border-radius:9999px;font-size:.75rem;font-weight:700;font-family:'Orbitron',sans-serif;display:flex;align-items:center;gap:.5rem;cursor:pointer;transition:all .2s;box-shadow:0 4px 12px rgba(0,0,0,.5);}
+    .vsl-close:hover{background:#E41E26;border-color:#E41E26;transform:scale(1.05);}
+    .vsl-video-wrap{position:relative;width:100%;max-height:calc(85vh - 60px);background:#0D0D0D;border-radius:.75rem;overflow:hidden;border:1px solid rgba(124,58,237,.4);box-shadow:0 25px 50px -12px rgba(124,58,237,.3);display:flex;align-items:center;justify-content:center;}
+    .vsl-video-wrap video{width:100%;max-height:calc(85vh - 60px);object-fit:contain;display:block;}
+    .vsl-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.3);cursor:pointer;transition:opacity .3s;z-index:10;}
+    .vsl-play-btn{width:4.5rem;height:4.5rem;border-radius:50%;background:linear-gradient(135deg,#FF6B00,#7C3AED);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 10px 15px rgba(124,58,237,.5);transition:transform .2s;}
     .vsl-play-btn:hover{transform:scale(1.1);}
-    .vsl-text{text-align:center;color:rgba(255,255,255,.6);margin-top:1rem;font-size:.875rem;}
+    .vsl-text{text-align:center;color:rgba(255,255,255,.7);margin-top:.75rem;font-size:.825rem;}
 
     /* Diagonal footer line */
     .diag{height:1rem;overflow:hidden;transform:rotate(180deg);}
@@ -207,10 +207,10 @@
 <!-- VSL Modal -->
 <div class="vsl-overlay" id="vslModal">
     <div class="vsl-inner">
-        <button class="vsl-close" id="closeVsl"><span>FECHAR</span><i class="fas fa-times"></i></button>
         <div class="vsl-video-wrap">
-            <video id="vslVideo" playsinline="" controlslist="nodownload">
-                <source src="media/fjKlFQ8.mp4" type="video/mp4">
+            <button class="vsl-close" id="closeVsl"><span>FECHAR</span><i class="fas fa-times"></i></button>
+            <video id="vslVideo" playsinline="" preload="auto" poster="media/poster.jpg" controlslist="nodownload">
+                <source src="media/fjKlFQ8.mp4#t=0.001" type="video/mp4">
             </video>
             <div class="vsl-play" id="playOverlay">
                 <button class="vsl-play-btn"><i class="fas fa-play" style="color:#fff;font-size:1.875rem;margin-left:4px;"></i></button>
@@ -241,10 +241,10 @@
 var modal=document.getElementById('vslModal'),vid=document.getElementById('vslVideo'),
     overlay=document.getElementById('playOverlay'),closeBtn=document.getElementById('closeVsl');
 function closeModal(){modal.style.display='none';vid.pause();}
-overlay.addEventListener('click',function(){overlay.style.opacity='0';setTimeout(function(){overlay.style.display='none';},300);vid.play().catch(function(){});});
+overlay.addEventListener('click',function(e){e.stopPropagation();overlay.style.opacity='0';setTimeout(function(){overlay.style.display='none';},300);vid.play().catch(function(){});});
 vid.addEventListener('click',function(){if(!vid.paused){vid.pause();overlay.style.display='flex';setTimeout(function(){overlay.style.opacity='1';},10);}});
 vid.addEventListener('ended',closeModal);
-closeBtn.addEventListener('click',closeModal);
+closeBtn.addEventListener('click',function(e){e.stopPropagation();closeModal();});
 modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
 document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.style.display!=='none')closeModal();});
 </script>
