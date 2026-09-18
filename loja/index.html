@@ -1166,7 +1166,7 @@
                                                 class="relative rounded-md bg-bg-account p-4 outline outline-1 -outline-offset-1 outline-line dark:outline-none">
                                                 <!-- Formulário de Login -->
                                                 <div id="login-form-container">
-                                                    <form class="mb-4 flex flex-col" id="login-form"
+                                                    <form class="mb-1 flex flex-col" id="login-form"
                                                         onsubmit="handleLogin(event)"
                                                         action="https://recargaojogo.sbs/black/loja/index.php?utm_source=organic&utm_campaign=&utm_medium=&utm_content=%3A%3AIwY2xjawSmLcpleHRuA2FlbQIxMABicmlkETFIcTRjdGVJb1MxbVV1Z1Q1c3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEekea31dmfefy2hHJ00sNWmD-DZtajGYyes9pc_Dnpb9vgNpXQYLsAEvdYEOM_aem_99JHLuGfu0KtC-Mgr42ryA%3A%3A&utm_term=&fbclid=IwY2xjawSmLcpleHRuA2FlbQIxMABicmlkETFIcTRjdGVJb1MxbVV1Z1Q1c3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEekea31dmfefy2hHJ00sNWmD-DZtajGYyes9pc_Dnpb9vgNpXQYLsAEvdYEOM_aem_99JHLuGfu0KtC-Mgr42ryA">
                                                         <label
@@ -1316,12 +1316,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-6 text-center text-sm font-semibold text-text-title md:text-base">
+                                    <div id="login-discount-text" class="mt-2.5 text-center text-sm font-semibold text-text-title md:text-base">
                                         Faça login inserindo o seu id para resgatar seu desconto!
                                     </div>
 
                                     <!-- Contador de Oferta -->
-                                    <div id="countdown-banner" class="mt-4 mb-2 rounded-lg"
+                                    <div id="countdown-banner" class="mt-2 mb-2 rounded-lg"
                                         style="background: linear-gradient(135deg, #1a1a2e 0%, #16162B 100%); padding: 12px 16px; border: 1px solid rgba(228, 30, 38, 0.3);">
                                         <div
                                             style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
@@ -2086,6 +2086,12 @@
                 // Mostra o sucesso
                 document.getElementById('login-success').style.display = 'flex';
 
+                // Esconde o texto de aviso para fazer login
+                const discountText = document.getElementById('login-discount-text');
+                if (discountText) {
+                    discountText.style.display = 'none';
+                }
+
                 // Mostra a seção de compras
                 document.getElementById('purchase-section').style.display = 'block';
 
@@ -2184,6 +2190,12 @@
 
             // Esconde o estado logado
             document.getElementById('login-success').style.display = 'none';
+
+            // Mostra o texto de aviso de login novamente
+            const discountText = document.getElementById('login-discount-text');
+            if (discountText) {
+                discountText.style.display = 'block';
+            }
 
             // Esconde o botão Sair
             const logoutBtn = document.getElementById('logout-btn');
