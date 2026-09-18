@@ -209,6 +209,43 @@ function spinWheel(){
     cR+=(360*5)+diff;
     canvas.style.transition='transform 6s cubic-bezier(0.17,0.67,0.12,0.99)';
     canvas.style.transform='rotate('+cR+'deg)';
+
+    // 🔊 Som de roleta girando
+    (function playSpinSound(){
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var duration = 6.0;
+            var totalTicks = 60;
+            for(var i = 0; i < totalTicks; i++){
+                (function(idx){
+                    // Easing: mais rápido no início, mais lento no final
+                    var progress = idx / totalTicks;
+                    var eased = progress * progress; // quadrático
+                    var time = eased * duration;
+
+                    var osc = ctx.createOscillator();
+                    var gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    // Tom mais grave e "clicky" como batida de roleta
+                    osc.type = 'sawtooth';
+                    osc.frequency.value = 180 + Math.random() * 60;
+
+                    var t = ctx.currentTime + time;
+                    gain.gain.setValueAtTime(0, t);
+                    gain.gain.linearRampToValueAtTime(0.35, t + 0.008);
+                    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+
+                    osc.start(t);
+                    osc.stop(t + 0.07);
+                })(i);
+            }
+            // Fecha o contexto depois que terminar
+            setTimeout(function(){ try{ ctx.close(); }catch(e){} }, 7000);
+        } catch(e){ console.log('Audio não suportado:', e); }
+    })();
+
     setTimeout(function(){
         if(win){showWin();}else{lM.classList.add('active');}
         spinning=false;spinBtn.style.pointerEvents='auto';
