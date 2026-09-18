@@ -1,0 +1,176 @@
+{
+  "regions": ["gru1"],
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/loja.html",
+      "destination": "/loja/",
+      "permanent": true
+    },
+    {
+      "source": "/loja.html/:path*",
+      "destination": "/loja/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/naruto/loja.html",
+      "destination": "/naruto/loja/",
+      "permanent": true
+    },
+    {
+      "source": "/naruto/loja.html/:path*",
+      "destination": "/naruto/loja/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/loja/checkout.html",
+      "destination": "/loja/checkout/",
+      "permanent": true
+    },
+    {
+      "source": "/loja/checkout.html/:path*",
+      "destination": "/loja/checkout/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/loja/pix.html",
+      "destination": "/loja/pix/",
+      "permanent": true
+    },
+    {
+      "source": "/loja/pix.html/:path*",
+      "destination": "/loja/pix/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/naruto/loja/checkout.html",
+      "destination": "/naruto/loja/checkout/",
+      "permanent": true
+    },
+    {
+      "source": "/naruto/loja/checkout.html/:path*",
+      "destination": "/naruto/loja/checkout/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/naruto/loja/pix.html",
+      "destination": "/naruto/loja/pix/",
+      "permanent": true
+    },
+    {
+      "source": "/naruto/loja/pix.html/:path*",
+      "destination": "/naruto/loja/pix/:path*",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/verificacao/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=verificacao"
+    },
+    {
+      "source": "/verificacao/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/up4/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=up4"
+    },
+    {
+      "source": "/up4/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/iof/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=iof"
+    },
+    {
+      "source": "/iof/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/garenatax/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=garenatax"
+    },
+    {
+      "source": "/garenatax/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/garenareserve/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=garenareserve"
+    },
+    {
+      "source": "/garenareserve/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/verificacao/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=verificacao"
+    },
+    {
+      "source": "/naruto/verificacao/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/up4/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=up4"
+    },
+    {
+      "source": "/naruto/up4/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/iof/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=iof"
+    },
+    {
+      "source": "/naruto/iof/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/garenatax/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=garenatax"
+    },
+    {
+      "source": "/naruto/garenatax/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/garenareserve/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=garenareserve"
+    },
+    {
+      "source": "/naruto/garenareserve/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/loja/checkout/backend.php",
+      "destination": "/api/loja-checkout-backend.js"
+    },
+    {
+      "source": "/loja/checkout/backend.php",
+      "destination": "/api/loja-checkout-backend.js"
+    },
+    {
+      "source": "/loja/pix/check_status.php",
+      "destination": "/api/loja-pix-check-status.js"
+    },
+    {
+      "source": "/loja/pix/qr.php",
+      "destination": "/api/loja-pix-qr.js"
+    },
+    {
+      "source": "/loja/gerarpix/pixel-server.php",
+      "destination": "/api/loja-pixel-server.js"
+    },
+    {
+      "source": "/api/get-customer-data.php",
+      "destination": "/api/get-customer-data.js"
+    },
+    {
+      "source": "/api/test.php",
+      "destination": "/api/test.js"
+    }
+  ]
+}

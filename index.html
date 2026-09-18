@@ -1,0 +1,253 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire × Naruto Shippuden - Evento Exclusivo | Garena</title>
+    <meta name="description" content="A parceria mais épica chegou! Free Fire × Naruto Shippuden. Responda o quiz, gire a roleta e ganhe até 90% de desconto na loja Free Fire!">
+    <link rel="icon" type="image/png" href="images/iconff.png">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&amp;family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <style>
+    :root{--c-primary:#FF6B00;--c-primary-dark:#C2410C;--c-accent:#7C3AED;--c-bg:#08050F;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html,body{background:var(--c-bg)!important;font-family:'Poppins',sans-serif;color:#fff;min-height:100vh;}
+    a{color:inherit;text-decoration:none;}img{max-width:100%;display:block;}button{cursor:pointer;font-family:inherit;}
+
+    /* Ambient neon orbs */
+    .ambient-bg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+    .ambient-bg::before,.ambient-bg::after{content:'';position:absolute;width:55vmax;height:55vmax;border-radius:50%;filter:blur(90px);opacity:.3;will-change:transform;}
+    .ambient-bg::before{background:radial-gradient(circle,#FF6B00,transparent 60%);top:-15vmax;left:-10vmax;animation:orbA 18s ease-in-out infinite;}
+    .ambient-bg::after{background:radial-gradient(circle,#7C3AED,transparent 60%);bottom:-18vmax;right:-12vmax;animation:orbB 22s ease-in-out infinite;}
+    @keyframes orbA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(6vmax,4vmax) scale(1.12);}}
+    @keyframes orbB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-5vmax,-4vmax) scale(1.18);}}
+
+    .page-content{position:relative;z-index:1;}
+    .ff-container{max-width:1024px;margin:0 auto;padding:0 16px;}
+    .text-center{text-align:center;}
+
+    /* Neon title */
+    .neon-title{font-family:'Orbitron',sans-serif;background:linear-gradient(135deg,#FF6B00,#FFD700 50%,#FF6B00);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 18px rgba(255,107,0,0.55));letter-spacing:.02em;font-size:2.25rem;font-weight:700;margin-bottom:.5rem;line-height:1.2;}
+    .neon-sub{font-family:'Orbitron',sans-serif;background:linear-gradient(135deg,#A855F7,#7C3AED);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem;font-weight:600;letter-spacing:.1em;}
+    @media(min-width:768px){.neon-title{font-size:3.5rem;}.neon-sub{font-size:1.4rem;}}
+
+    /* CTA Button */
+    .ff-btn{position:relative;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;font-family:'Orbitron',sans-serif;font-weight:700;padding:1.05rem 2.6rem;border-radius:999px;text-transform:uppercase;letter-spacing:.06em;border:none;display:inline-flex;align-items:center;gap:.75rem;font-size:1.1rem;box-shadow:0 6px 26px rgba(255,107,0,.5),0 0 50px rgba(124,58,237,.25);overflow:hidden;transition:transform .25s,box-shadow .25s;}
+    .ff-btn::after{content:'';position:absolute;top:0;left:-120%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.2s ease-in-out infinite;}
+    @keyframes shine{0%{left:-120%}55%,100%{left:160%}}
+    .ff-btn:hover{transform:translateY(-3px);box-shadow:0 10px 34px rgba(255,107,0,.7),0 0 70px rgba(124,58,237,.5);}
+    .cta-pulse{animation:ctaPulse 2.4s ease-in-out infinite;}
+    @keyframes ctaPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.04);}}
+
+    /* Countdown */
+    .cd-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:2rem;}
+    .cd-label{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:#FF8C00;margin-bottom:.5rem;}
+    .cd-row{display:flex;align-items:center;gap:.5rem;}
+    .cd-box{min-width:64px;padding:.6rem .4rem;border-radius:14px;background:linear-gradient(160deg,rgba(8,5,15,.9),rgba(8,5,15,.95));border:1px solid rgba(255,107,0,.35);box-shadow:inset 0 0 22px rgba(255,107,0,.12);text-align:center;}
+    .cd-num{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.6rem;line-height:1;color:#fff;text-shadow:0 0 14px rgba(255,215,0,.4);}
+    .cd-unit{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);}
+    .cd-sep{font-family:'Orbitron',sans-serif;font-weight:900;font-size:1.6rem;color:#FF6B00;}
+
+    /* Step cards */
+    .steps-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;max-width:56rem;margin:0 auto;}
+    @media(min-width:640px){.steps-grid{grid-template-columns:repeat(3,1fr);}}
+    .step-card{position:relative;background:linear-gradient(160deg,rgba(20,10,40,.85),rgba(8,5,15,.92));border:1px solid rgba(124,58,237,.25);border-radius:18px;padding:1.6rem 1.3rem;transition:transform .3s,border-color .3s,box-shadow .3s;overflow:hidden;opacity:0;animation:fadeUp .6s ease forwards;}
+    .step-card:nth-child(2){animation-delay:.15s;}.step-card:nth-child(3){animation-delay:.3s;}
+    @keyframes fadeUp{to{opacity:1;transform:translateY(0);} from{opacity:0;transform:translateY(30px);}}
+    .step-card:hover{transform:translateY(-6px);border-color:rgba(255,107,0,.55);box-shadow:0 14px 40px rgba(0,0,0,.45),0 0 40px rgba(124,58,237,.2);}
+    .step-icon{width:56px;height:56px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:#fff;background:linear-gradient(135deg,#7C3AED,#FF6B00);box-shadow:0 6px 20px rgba(124,58,237,.4);margin-bottom:1rem;}
+    .step-idx{position:absolute;top:.9rem;right:1.1rem;font-family:'Orbitron',sans-serif;font-weight:900;font-size:2.4rem;color:rgba(255,255,255,.05);line-height:1;}
+    .step-title{font-family:'Orbitron',sans-serif;color:#fff;font-weight:700;font-size:1.125rem;margin-bottom:.5rem;}
+    .step-desc{color:rgba(255,255,255,.6);font-size:.875rem;line-height:1.5;}
+
+    /* Title bar */
+    .ff-bar{display:flex;align-items:center;gap:.5rem;justify-content:center;margin-bottom:2rem;}
+    .ff-bar::before{content:'';width:4px;height:24px;background:linear-gradient(180deg,#FF6B00,#7C3AED);}
+    .ff-bar span{color:#fff;font-family:'Orbitron',sans-serif;font-size:.875rem;letter-spacing:.1em;text-transform:uppercase;}
+
+    /* Partner */
+    .partner{border-top:1px solid rgba(255,255,255,.12);padding:2.5rem 0;display:flex;justify-content:center;align-items:center;gap:2rem;}
+    .partner img{height:2.5rem;object-fit:contain;opacity:.8;transition:opacity .2s;}
+    .partner img:hover{opacity:1;}
+
+    /* Collab badge */
+    .collab-badge{display:inline-flex;align-items:center;gap:.5rem;background:linear-gradient(135deg,rgba(124,58,237,.2),rgba(255,107,0,.2));border:1px solid rgba(255,107,0,.4);border-radius:999px;padding:.4rem 1.2rem;font-family:'Orbitron',sans-serif;font-size:.7rem;letter-spacing:.12em;color:#FFD700;text-transform:uppercase;margin-bottom:1.2rem;}
+
+    /* VSL Modal */
+    .vsl-overlay{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(4px);}
+    .vsl-inner{position:relative;width:100%;max-width:56rem;margin:0 1rem;animation:modalIn .4s ease;}
+    @keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.92);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .vsl-close{position:absolute;top:-3rem;right:0;color:rgba(255,255,255,.7);font-size:1rem;font-family:'Orbitron',sans-serif;display:flex;align-items:center;gap:.5rem;background:none;border:none;cursor:pointer;transition:color .2s;}
+    .vsl-close:hover{color:#fff;}
+    .vsl-video-wrap{position:relative;background:#0D0D0D;border-radius:.75rem;overflow:hidden;border:1px solid rgba(124,58,237,.4);box-shadow:0 25px 50px -12px rgba(124,58,237,.3);}
+    .vsl-video-wrap video{width:100%;display:block;}
+    .vsl-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);cursor:pointer;transition:opacity .3s;z-index:10;}
+    .vsl-play-btn{width:5rem;height:5rem;border-radius:50%;background:linear-gradient(135deg,#FF6B00,#7C3AED);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 10px 15px rgba(124,58,237,.5);transition:transform .2s;}
+    .vsl-play-btn:hover{transform:scale(1.1);}
+    .vsl-text{text-align:center;color:rgba(255,255,255,.6);margin-top:1rem;font-size:.875rem;}
+
+    /* Diagonal footer line */
+    .diag{height:1rem;overflow:hidden;transform:rotate(180deg);}
+    </style>
+    <!-- Lowtrack Pixel -->
+    <script>
+      window.pixelId = "lt_px_669f8020a206";
+      var a = document.createElement("script");
+      a.setAttribute("async", "");
+      a.setAttribute("defer", "");
+      a.setAttribute("src", "https://lowtrack.com.br/pixel.js");
+      document.head.appendChild(a);
+    </script><script async="" defer="" src="js/pixel.js"></script>
+    <!-- UTM Persist -->
+    <script>(function(){var p=new URLSearchParams(window.location.search);['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src'].forEach(function(k){var v=p.get(k);if(v)sessionStorage.setItem(k,v);});})();</script>
+</head>
+<body>
+
+<!-- Ambient Background -->
+<div class="ambient-bg" aria-hidden="true"></div>
+
+<div class="page-content">
+
+    <!-- Banner -->
+    <section style="margin:0;padding:0;position:relative;">
+        <img src="images/B53isKp.jpg" alt="Free Fire × Naruto Shippuden - Evento Exclusivo" style="width:100%;height:auto;display:block;">
+        <div style="position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent 0%,#08050F 100%);"></div>
+    </section>
+
+    <!-- Wave -->
+    <div style="margin-top:-2px;overflow:hidden;">
+        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:block;width:100%;">
+            <path d="M0 60L48 55C96 50 192 40 288 35C384 30 480 30 576 33.3C672 36.7 768 43.3 864 45C960 46.7 1056 43.3 1152 38.3C1248 33.3 1344 26.7 1392 23.3L1440 20V60H1392C1344 60 1248 60 1152 60C1056 60 960 60 864 60C768 60 672 60 576 60C480 60 384 60 288 60C192 60 96 60 48 60H0Z" fill="#08050F"></path>
+        </svg>
+    </div>
+
+    <!-- Main Content -->
+    <main style="padding:2.5rem 0 3rem;">
+        <div class="ff-container">
+            <!-- Title -->
+            <div class="text-center" style="margin-bottom:1.75rem;">
+                <div class="collab-badge">🍃 Evento Exclusivo · Edição Limitada</div>
+                <h1 class="neon-title">FREE FIRE × NARUTO</h1>
+                <div class="neon-sub" style="margin-bottom:1rem;">SHIPPUDEN</div>
+                <p style="color:rgba(255,255,255,.9);font-size:1.125rem;max-width:42rem;margin:0 auto;">
+                    Prove que você é um verdadeiro ninja do Free Fire, gire a roleta e ganhe
+                    <span style="color:#FFD700;font-weight:600;">até 90% de desconto</span>
+                    em diamantes exclusivos da parceria!
+                </p>
+            </div>
+
+            <!-- Countdown -->
+            <div class="cd-wrap">
+                <span class="cd-label">⏳ Oferta encerra em</span>
+                <div class="cd-row">
+                    <div class="cd-box"><div class="cd-num" id="cd-h">02</div><div class="cd-unit">Horas</div></div>
+                    <span class="cd-sep">:</span>
+                    <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-unit">Min</div></div>
+                    <span class="cd-sep">:</span>
+                    <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-unit">Seg</div></div>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="text-center" style="margin-bottom:4rem;">
+                <a href="pages/quiz.html">
+                    <button class="ff-btn cta-pulse">
+                        🍃 PARTICIPAR DO EVENTO
+                        <svg width="15" height="11" viewBox="0 0 15 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.34241 10.96H0V0.0400391H1.71674L6.98958 5.31287L1.34241 10.96Z" fill="#fff"></path>
+                            <path d="M7.64783 0.0400391V1.58252L10.7715 4.71266L12.0881 3.39607L8.72563 0.0400391H7.64783Z" fill="#fff"></path>
+                            <path d="M7.64783 10.8117H8.95797L14.1985 5.57113L12.8819 4.26099L7.64783 9.4951V10.8117Z" fill="#fff"></path>
+                        </svg>
+                    </button>
+                </a>
+            </div>
+
+            <!-- How it Works -->
+            <section>
+                <div class="ff-bar"><span>Como Funciona</span></div>
+                <div class="steps-grid">
+                    <article class="step-card">
+                        <span class="step-idx">01</span>
+                        <div class="step-icon"><i class="fas fa-scroll"></i></div>
+                        <h3 class="step-title">Responda o Quiz</h3>
+                        <p class="step-desc">8 perguntas sobre Free Fire. Mostre que você domina o campo de batalha como um verdadeiro ninja!</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-idx">02</span>
+                        <div class="step-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3 class="step-title">Gire a Roleta</h3>
+                        <p class="step-desc">Use seu chakra e gire a roleta. Cada tentativa revela um desconto exclusivo da edição Naruto!</p>
+                    </article>
+                    <article class="step-card">
+                        <span class="step-idx">03</span>
+                        <div class="step-icon"><i class="fas fa-gem"></i></div>
+                        <h3 class="step-title">Resgate Diamantes</h3>
+                        <p class="step-desc">Use seu desconto especial e adquira diamantes para destravar skins exclusivas Free Fire × Naruto!</p>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Partner -->
+    <section class="partner">
+        <img src="images/garenalogo.png" alt="Garena">
+        <span style="color:#FF6B00;font-size:2rem;font-weight:300;">×</span>
+        <img src="images/garena-logo-full.png" alt="Garena Free Fire" style="height:3.5rem;object-fit:contain;opacity:.9;">
+    </section>
+
+    <!-- Diagonal footer -->
+    <div class="diag">
+        <svg width="100%" viewBox="0 0 1440 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs><linearGradient id="gB" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FF6B00"></stop><stop offset="50%" stop-color="#7C3AED"></stop><stop offset="100%" stop-color="#FF6B00"></stop></linearGradient></defs>
+            <path d="M0 23.6899H248.724L270.737 5.17356C272.873 3.03632 275.77 1.8349 278.792 1.8335H1440" stroke="url(#gB)" stroke-width="2" stroke-miterlimit="10"></path>
+            <path d="M248.546 23.3337H0V18.7046H253.887L248.546 23.3337Z" fill="url(#gB)"></path>
+        </svg>
+    </div>
+</div>
+
+<!-- VSL Modal -->
+<div class="vsl-overlay" id="vslModal">
+    <div class="vsl-inner">
+        <button class="vsl-close" id="closeVsl"><span>FECHAR</span><i class="fas fa-times"></i></button>
+        <div class="vsl-video-wrap">
+            <video id="vslVideo" playsinline="" controlslist="nodownload">
+                <source src="media/fjKlFQ8.mp4" type="video/mp4">
+            </video>
+            <div class="vsl-play" id="playOverlay">
+                <button class="vsl-play-btn"><i class="fas fa-play" style="color:#fff;font-size:1.875rem;margin-left:4px;"></i></button>
+            </div>
+        </div>
+        <p class="vsl-text">🍃 Assista até o final para participar do evento!</p>
+    </div>
+</div>
+
+<script>
+// Countdown (2h persistent)
+(function(){
+    var D=2*60*60*1000,k='promoDeadline',dl=parseInt(localStorage.getItem(k),10);
+    if(!dl||isNaN(dl)||dl<Date.now()){dl=Date.now()+D;localStorage.setItem(k,dl);}
+    var h=document.getElementById('cd-h'),m=document.getElementById('cd-m'),s=document.getElementById('cd-s');
+    function pad(n){return n<10?'0'+n:''+n;}
+    function tick(){
+        var d=dl-Date.now();
+        if(d<=0){d=D;dl=Date.now()+D;localStorage.setItem(k,dl);}
+        h.textContent=pad(Math.floor(d/3600000));
+        m.textContent=pad(Math.floor((d%3600000)/60000));
+        s.textContent=pad(Math.floor((d%60000)/1000));
+    }
+    tick();setInterval(tick,1000);
+})();
+
+// VSL Modal
+var modal=document.getElementById('vslModal'),vid=document.getElementById('vslVideo'),
+    overlay=document.getElementById('playOverlay'),closeBtn=document.getElementById('closeVsl');
+function closeModal(){modal.style.display='none';vid.pause();}
+overlay.addEventListener('click',function(){overlay.style.opacity='0';setTimeout(function(){overlay.style.display='none';},300);vid.play().catch(function(){});});
+vid.addEventListener('click',function(){if(!vid.paused){vid.pause();overlay.style.display='flex';setTimeout(function(){overlay.style.opacity='1';},10);}});
+vid.addEventListener('ended',closeModal);
+closeBtn.addEventListener('click',closeModal);
+modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&modal.style.display!=='none')closeModal();});
+</script>
+
+
+</body></html>
