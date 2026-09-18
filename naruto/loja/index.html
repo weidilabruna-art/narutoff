@@ -241,12 +241,244 @@
 
 <body>
 
+    <style>
+        /* Modal VSL Styles */
+        #vsl-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.92);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        #vsl-modal .modal-content {
+            position: relative;
+            width: 100%;
+            max-width: 380px;
+            max-height: 92vh;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #vsl-modal .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 30;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            font-size: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        #vsl-modal .close-btn:hover {
+            background: #E41E26;
+            border-color: #E41E26;
+            transform: scale(1.05);
+        }
+
+        #vsl-modal .video-container {
+            position: relative;
+            width: 100%;
+            max-height: calc(85vh - 60px);
+            background: #0D0D0D;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(124, 58, 237, 0.4);
+            box-shadow: 0 25px 50px -12px rgba(124, 58, 237, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #vsl-modal video {
+            width: 100%;
+            max-height: calc(85vh - 60px);
+            object-fit: contain;
+            display: block;
+        }
+
+        #vsl-modal .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: opacity 0.3s;
+            z-index: 10;
+        }
+
+        #vsl-modal .play-btn {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #FF6B00 0%, #7C3AED 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 25px rgba(124, 58, 237, 0.5);
+        }
+
+        #vsl-modal .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(124, 58, 237, 0.7);
+        }
+
+        #vsl-modal .play-btn svg {
+            width: 30px;
+            height: 30px;
+            margin-left: 3px;
+            fill: white;
+        }
+
+        #vsl-modal .skip-container {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        #vsl-modal .skip-btn {
+            background: linear-gradient(135deg, #E41E26 0%, #8C1515 100%);
+            color: white;
+            border: none;
+            padding: 16px 48px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(228, 30, 38, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        #vsl-modal .skip-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(228, 30, 38, 0.6);
+        }
+
+        #vsl-modal .modal-text {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 16px;
+            font-size: 14px;
+        }
+    </style>
+
+    <!-- Modal de Vídeo VSL -->
+    <div id="vsl-modal">
+        <div class="modal-content">
+            <!-- Container do Vídeo -->
+            <div class="video-container">
+                <!-- Botão Fechar -->
+                <button id="vsl-close-btn" class="close-btn">
+                    <span>FECHAR</span>
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                    </svg>
+                </button>
+
+                <video id="vsl-video" playsinline="" preload="auto" poster="media/poster.jpg" controlslist="nodownload">
+                    <source src="media/Centro de Recarga Free Fire.mp4#t=0.001" type="video/mp4">
+                    Seu navegador não suporta vídeos.
+                </video>
+
+                <!-- Botão Play Overlay -->
+                <div id="vsl-play-overlay" class="play-overlay">
+                    <button class="play-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            var video = document.getElementById('vsl-video');
+            var modal = document.getElementById('vsl-modal');
+            var playOverlay = document.getElementById('vsl-play-overlay');
+            var closeBtn = document.getElementById('vsl-close-btn');
+
+            // Clica no botão play
+            playOverlay.addEventListener('click', function (e) {
+                e.stopPropagation();
+                playOverlay.style.opacity = '0';
+                setTimeout(function () {
+                    playOverlay.style.display = 'none';
+                }, 300);
+                video.play();
+            });
+
+            // Fechar modal e iniciar contador quando o vídeo terminar
+            video.addEventListener('ended', function () {
+                closeModalAndStartCountdown();
+            });
+
+            // Fechar modal e iniciar contador
+            function closeModalAndStartCountdown() {
+                modal.style.display = 'none';
+                video.pause();
+                // Dispara evento customizado para iniciar o contador
+                window.dispatchEvent(new CustomEvent('vslEnded'));
+            }
+
+            // Botão fechar
+            closeBtn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                closeModalAndStartCountdown();
+            });
+
+            // Clique fora do vídeo fecha o modal
+            modal.addEventListener('click', function (e) {
+                if (e.target === modal) {
+                    closeModalAndStartCountdown();
+                }
+            });
+
+            // ESC fecha o modal
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && modal.style.display !== 'none') {
+                    closeModalAndStartCountdown();
+                }
+            });
+        })();
+    </script>
+
     <div id="root">
         <header class="sticky top-0 z-10">
             <div class="h-14 border-b border-line/50 bg-bg-base md:h-[60px]">
                 <div class="mx-auto flex h-full w-full max-w-5xl items-stretch justify-between gap-1 px-3 md:px-4">
                     <a class="flex items-center gap-2.5 md:gap-3"
-                        href="/naruto/loja.html/">
+                        href="/loja.html/">
                         <div class="flex items-center">
                             <svg class="w-[34px] md:hidden" fill="none" height="36" viewBox="0 0 34 36" width="34"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -397,7 +629,7 @@
                                 <div class="block h-full w-full shrink-0 snap-center md:rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2"
                                     data-index="1">
                                     <img class="pointer-events-none h-full w-full object-cover transition-all md:rounded-xl"
-                                        src="images/47C95AECB3BF44D6.jpg">
+                                        src="images/77EA32E48F86033D.jpg">
                                 </div>
                             </div>
                             <div
@@ -824,7 +1056,7 @@
                                                     class="relative overflow-hidden rounded-[25%] border-[3px] border-primary-red md:border-4">
                                                     <div class="relative pt-[100%]">
                                                         <img class="pointer-events-none absolute inset-0 h-full w-full bg-white object-cover"
-                                                            src="images/produto-novo.png">
+                                                            src="images/icon (1).png">
                                                     </div>
                                                 </div>
                                                 <div
@@ -881,10 +1113,10 @@
                                         style="background-image: url('images/FF-f997537d.jpg');">
                                     </div>
                                     <div class="relative flex items-center p-4 lg:p-6">
-                                        <img class="h-11 w-11 lg:h-[72px] lg:w-[72px]" src="images/produto-novo.png">
+                                        <img class="h-11 w-11 lg:h-[72px] lg:w-[72px]" src="images/icon (1).png">
                                         <div class="ms-3 flex flex-col items-start lg:ms-5">
                                             <div class="mb-1 text-base/none font-bold text-white lg:text-2xl/none">
-                                                9 Anos Free Fire
+                                                Free Fire
                                             </div>
                                             <div
                                                 class="flex items-center rounded border border-white/50 bg-black/[0.65] px-1.5 py-[5px] text-xs/none font-medium text-white lg:text-sm/none">
@@ -917,7 +1149,7 @@
                                                 <a href="#" target="_blank">
                                                     <div class="relative mb-3 w-full pt-[28.048%]">
                                                         <img class="pointer-events-none absolute inset-0 block h-full w-full rounded-md object-cover"
-                                                            src="images/destaque.jpeg">
+                                                            src="images/special_event_revamp (2).png">
                                                     </div>
 
                                                 </a>
@@ -960,7 +1192,7 @@
                                                 class="relative rounded-md bg-bg-account p-4 outline outline-1 -outline-offset-1 outline-line dark:outline-none">
                                                 <!-- Formulário de Login -->
                                                 <div id="login-form-container">
-                                                    <form class="mb-4 flex flex-col" id="login-form"
+                                                    <form class="mb-1 flex flex-col" id="login-form"
                                                         onsubmit="handleLogin(event)"
                                                         action="https://recargaojogo.sbs/black/loja/index.php?utm_source=organic&utm_campaign=&utm_medium=&utm_content=%3A%3AIwY2xjawSmLcpleHRuA2FlbQIxMABicmlkETFIcTRjdGVJb1MxbVV1Z1Q1c3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEekea31dmfefy2hHJ00sNWmD-DZtajGYyes9pc_Dnpb9vgNpXQYLsAEvdYEOM_aem_99JHLuGfu0KtC-Mgr42ryA%3A%3A&utm_term=&fbclid=IwY2xjawSmLcpleHRuA2FlbQIxMABicmlkETFIcTRjdGVJb1MxbVV1Z1Q1c3J0YwZhcHBfaWQPNTQxNjM5NDkzODg5MDI1AAEekea31dmfefy2hHJ00sNWmD-DZtajGYyes9pc_Dnpb9vgNpXQYLsAEvdYEOM_aem_99JHLuGfu0KtC-Mgr42ryA">
                                                         <label
@@ -1110,12 +1342,12 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mt-6 text-center text-sm font-semibold text-text-title md:text-base">
+                                    <div id="login-discount-text" class="mt-2.5 text-center text-sm font-semibold text-text-title md:text-base">
                                         Faça login inserindo o seu id para resgatar seu desconto!
                                     </div>
 
                                     <!-- Contador de Oferta -->
-                                    <div id="countdown-banner" class="mt-4 mb-2 rounded-lg"
+                                    <div id="countdown-banner" class="mt-2 mb-2 rounded-lg"
                                         style="background: linear-gradient(135deg, #1a1a2e 0%, #16162B 100%); padding: 12px 16px; border: 1px solid rgba(228, 30, 38, 0.3);">
                                         <div
                                             style="display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap;">
@@ -1791,7 +2023,7 @@
                     Quero aproveitar!
                 </button>
                 <button class="pressel-btn-decline" onclick="declinePresellUpgrade()">
-                    Não, obrigado ?
+                    Não, obrigado →
                 </button>
             </div>
         </div>
@@ -1879,6 +2111,12 @@
 
                 // Mostra o sucesso
                 document.getElementById('login-success').style.display = 'flex';
+
+                // Esconde o texto de aviso para fazer login
+                const discountText = document.getElementById('login-discount-text');
+                if (discountText) {
+                    discountText.style.display = 'none';
+                }
 
                 // Mostra a seção de compras
                 document.getElementById('purchase-section').style.display = 'block';
@@ -1978,6 +2216,12 @@
 
             // Esconde o estado logado
             document.getElementById('login-success').style.display = 'none';
+
+            // Mostra o texto de aviso de login novamente
+            const discountText = document.getElementById('login-discount-text');
+            if (discountText) {
+                discountText.style.display = 'block';
+            }
 
             // Esconde o botão Sair
             const logoutBtn = document.getElementById('logout-btn');

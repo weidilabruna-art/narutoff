@@ -48,6 +48,18 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/style-6d01927a.css">
+    <style>
+    /* Urgency Bar */
+    .urg-bar{background:linear-gradient(90deg,#b91c1c,#D81A0D);color:#fff;text-align:center;padding:10px 16px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;letter-spacing:0.2px;}
+    .urg-bar span{animation:urgPulse 1s ease-in-out infinite;}
+    @keyframes urgPulse{0%,100%{opacity:1;}50%{opacity:.6;}}
+    .urg-cd{font-family:monospace;font-size:15px;font-weight:900;background:rgba(0,0,0,.25);border-radius:4px;padding:2px 7px;letter-spacing:2px;}
+
+    /* Live badge */
+    .live-bar{background:#fff8f0;border-bottom:1px solid #ffe0c0;padding:8px 16px;display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#92400e;font-weight:600;}
+    .live-dot{width:8px;height:8px;border-radius:50%;background:#D81A0D;animation:liveBlink 1s ease-in-out infinite;flex-shrink:0;}
+    @keyframes liveBlink{0%,100%{opacity:1;}50%{opacity:.2;}}
+    </style>
 
     <!-- Fix iOS zoom on input focus -->
     <style>
@@ -9164,17 +9176,31 @@
             </div>
         </header>
 
+        <!-- Urgency Countdown Bar -->
+        <div class="urg-bar">
+            <span>🚨</span>
+            <span>Seu desconto expira em:</span>
+            <span class="urg-cd" id="ck-urgency">04:59</span>
+            <span>— Finalize agora!</span>
+        </div>
+
+        <!-- Live Viewers -->
+        <div class="live-bar">
+            <div class="live-dot"></div>
+            <span><strong id="live-count">47</strong> pessoas estão tentando resgatar esse mesmo desconto agora</span>
+        </div>
+
         <!-- Main Content -->
         <main class="flex flex-1 flex-col">
             <div class="relative h-full bg-fixed bg-top bg-no-repeat md:bg-[#F9F9F9] dark:md:bg-[#0D0D11]">
                 <div class="flex flex-col max-md:h-full md:mx-auto md:mb-[52px] md:mt-6 md:max-w-[600px] md:rounded-2xl md:bg-bg-base">
                     <!-- Game Banner -->
                     <div class="mb-3 bg-bg-base md:mb-4 md:rounded-t-2xl md:p-2 md:pb-0">
-                        <div class="relative h-20 overflow-hidden md:h-[120px] md:rounded-t-lg">
-                            <div class="h-full w-full bg-cover bg-center bg-no-repeat rtl:-scale-x-100" style="background-image: url('images/FF-f997537d.jpg')"></div>
+                        <div class="relative overflow-hidden md:rounded-t-lg">
+                            <img src="images/664FayR (1).png" alt="Free Fire x Naruto Shippuden" class="w-full block" style="width:100%; display:block; object-fit:cover;">
 
                             <!-- Back Button -->
-                            <a class="absolute start-4 top-4 md:start-6 md:top-6 flex items-center gap-0.5 rounded-full bg-black/40 p-1.5 pe-3 text-sm/none font-medium text-white outline outline-1 -outline-offset-1 outline-white/70 transition-colors hover:bg-[#606060]/50 md:pe-3.5 md:text-base/none" aria-label="Voltar para a pagina inicial" href="/naruto/loja.html/">
+                            <a class="absolute start-4 top-4 md:start-6 md:top-6 flex items-center gap-0.5 rounded-full bg-black/40 p-1.5 pe-3 text-sm/none font-medium text-white outline outline-1 -outline-offset-1 outline-white/70 transition-colors hover:bg-[#606060]/50 md:pe-3.5 md:text-base/none" aria-label="Voltar para a pagina inicial" href="/loja/">
                                 <svg width="1em" height="1em" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg" class="rotate-90 text-base rtl:-rotate-90 md:text-xl">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1716 28.1716C18.7337 26.6095 21.2663 26.6095 22.8284 28.1716L40 45.3431L57.1716 28.1716C58.7337 26.6095 61.2663 26.6095 62.8284 28.1716C64.3905 29.7337 64.3905 32.2663 62.8284 33.8284L42.8284 53.8284C41.2663 55.3905 38.7337 55.3905 37.1716 53.8284L17.1716 33.8284C15.6095 32.2663 15.6095 29.7337 17.1716 28.1716Z" fill="currentColor"></path>
                                 </svg>
@@ -9184,7 +9210,7 @@
 
                         <!-- Game Icon and Title -->
                         <div class="relative mx-5 -mt-9 flex flex-col items-center gap-4 md:-mt-10">
-                            <img class="block h-[72px] w-[72px] overflow-hidden rounded-lg bg-white object-contain outline outline-4 outline-bg-base md:h-20 md:w-20" src="images/produto-novo.png" alt="Free Fire">
+                            <img class="block h-[72px] w-[72px] overflow-hidden rounded-lg bg-white object-contain outline outline-4 outline-bg-base md:h-20 md:w-20" src="images/icon (1).png" alt="Free Fire">
                             <div class="text-center text-xl/none font-bold text-text-title md:text-2xl/none">
                                 Free Fire
                             </div>
@@ -9558,9 +9584,7 @@
                 const baseCentsVisual = Math.round((parseFloat(preco || '0') || 0) * 100);
                 const extrasCentsVisual = (Array.isArray(window.__selectedOrderBumps) ? window.__selectedOrderBumps : [])
                     .reduce((sum, item) => sum + (parseInt(item.priceInCents, 10) || 0), 0);
-                const valorTotalFinal = ((baseCentsVisual + extrasCentsVisual) / 100).toFixed(2);
-                sessionStorage.setItem('total_preco', valorTotalFinal);
-                localStorage.setItem('ff_amount', valorTotalFinal);
+                sessionStorage.setItem('total_preco', ((baseCentsVisual + extrasCentsVisual) / 100).toFixed(2));
 
                 // Chama a API para gerar o PIX
                 const response = await fetch('backend.php', {
@@ -9684,6 +9708,8 @@
   .ob-total strong{color:#ff8a00;font-size:17px}
   .ob-finalize{width:100%;border:0;border-radius:9px;background:#e60000;color:#fff;padding:15px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 7px 15px rgba(230,0,0,.24)}
   .ob-finalize:disabled{opacity:.65;cursor:not-allowed}
+            if (!window.__orderBumpConfirmed) {
+                openOrderBumpModal();
                 return;
             }
             // Pega os parâmetros do sessionStorage
@@ -9756,9 +9782,7 @@
                 const baseCentsVisual = Math.round((parseFloat(preco || '0') || 0) * 100);
                 const extrasCentsVisual = (Array.isArray(window.__selectedOrderBumps) ? window.__selectedOrderBumps : [])
                     .reduce((sum, item) => sum + (parseInt(item.priceInCents, 10) || 0), 0);
-                const valorTotalFinal = ((baseCentsVisual + extrasCentsVisual) / 100).toFixed(2);
-                sessionStorage.setItem('total_preco', valorTotalFinal);
-                localStorage.setItem('ff_amount', valorTotalFinal);
+                sessionStorage.setItem('total_preco', ((baseCentsVisual + extrasCentsVisual) / 100).toFixed(2));
 
                 // Chama a API para gerar o PIX
                 const response = await fetch('backend.php', {
@@ -9800,13 +9824,9 @@
                     const transactionId = data.id || '';
 
                     let searchParams = new URLSearchParams(window.location.search);
-
                     searchParams.set('pix', pixPayload);
-
                     searchParams.set('qrcode', qrCodeUrl);
-
                     searchParams.set('txid', transactionId);
-
                     let url = `../pix.html/index.html?${searchParams.toString()}`;
 
                     window.location.href = url;
@@ -9980,6 +10000,37 @@
       goToPagamento();
     });
   });
+})();
+// Urgency Countdown (5 min)
+(function(){
+    var D = 5*60, k = 'ckDeadline',
+        dl = parseInt(sessionStorage.getItem(k), 10);
+    if(!dl || isNaN(dl) || dl < Math.floor(Date.now()/1000)){
+        dl = Math.floor(Date.now()/1000) + D;
+        sessionStorage.setItem(k, dl);
+    }
+    var el = document.getElementById('ck-urgency');
+    function tick(){
+        var left = dl - Math.floor(Date.now()/1000);
+        if(left < 0) left = 0;
+        var m = Math.floor(left/60), s = left%60;
+        if(el) el.textContent = (m<10?'0':'')+m+':'+(s<10?'0':'')+s;
+        if(left > 0) setTimeout(tick, 1000);
+    }
+    tick();
+})();
+
+// Live Viewers Counter
+(function(){
+    var el = document.getElementById('live-count');
+    if(!el) return;
+    var base = 38 + Math.floor(Math.random()*20); // 38-57
+    el.textContent = base;
+    setInterval(function(){
+        var delta = Math.random() < 0.5 ? 1 : -1;
+        base = Math.max(28, Math.min(72, base + delta));
+        el.textContent = base;
+    }, 3500);
 })();
 </script>
 
