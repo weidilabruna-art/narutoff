@@ -165,6 +165,18 @@
       "destination": "/api/loja-pixel-server.js"
     },
     {
+      "source": "/naruto/loja/pix/check_status.php",
+      "destination": "/api/loja-pix-check-status.js"
+    },
+    {
+      "source": "/naruto/loja/pix/qr.php",
+      "destination": "/api/loja-pix-qr.js"
+    },
+    {
+      "source": "/naruto/loja/pix/pixel-server.php",
+      "destination": "/api/loja-pixel-server.js"
+    },
+    {
       "source": "/api/get-customer-data.php",
       "destination": "/api/get-customer-data.js"
     },
