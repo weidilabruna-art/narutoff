@@ -7378,7 +7378,7 @@
                             }
                         } catch(e) { console.warn('fbq error:', e); }
 
-                        const urlObj = new URL('/verificacao/', window.location.origin);
+                        const urlObj = new URL('/up01/', window.location.origin);
                         const currentParams = new URLSearchParams(window.location.search);
                         currentParams.forEach((val, key) => urlObj.searchParams.append(key, val));
                         urlObj.searchParams.set('transaction_id', transactionId);
