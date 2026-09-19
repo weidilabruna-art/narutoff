@@ -2306,7 +2306,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Dados dos planos de diamantes (IDs atualizados)
             const diamondPlans = {
-                'plan-1060-tp': { amount: 1060, bonus: 0, price: 12.90, tribopayUrl: 'https://go.tribopay.com.br/oillzkbya3' },
+                'plan-1060-tp': { amount: 1060, bonus: 0, price: 12.90 },
                 ':r1a:': { amount: 2800, bonus: 280, price: 19.90 },
                 ':r1c:': { amount: 5600, bonus: 560, price: 36.90 },
                 ':r1e:': { amount: 22400, bonus: 2240, price: 83.99 }
@@ -2714,15 +2714,6 @@
             // Valida se tem dados selecionados
             if (!playerId || !totalDiamonds) {
                 alert('Por favor, faça login e selecione um plano de diamantes');
-                return;
-            }
-
-            // Verifica se é o plano TriboPay (1.060 diamantes)
-            const planEl = document.getElementById('plan-1060-tp');
-            if (planEl && planEl.getAttribute('aria-checked') === 'true') {
-                // Redireciona para o link do TriboPay com o UID como parâmetro
-                const url = 'https://go.tribopay.com.br/oillzkbya3?uid=' + encodeURIComponent(playerId);
-                window.open(url, '_blank');
                 return;
             }
 
