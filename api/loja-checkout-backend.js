@@ -49,10 +49,18 @@ export default async function handler(req, res) {
     899: { title: 'Assinatura Semanal', product_hash: 'qdzyel6qgc', offer_hash: 'cxv6bgyc0w' },
     1290: { title: '1.060 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'oillzkbya3' },
     1499: { title: 'Passe Booyah Plus', product_hash: 'qdzyel6qgc', offer_hash: 'wwmme' },
-    3690: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
+    1790: { title: '2.180 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i' },
+    1990: {
+      title: '5.600 Diamantes',
+      product_hash: 'apubqrxdkq',
+      offer_hash: 'kr76v1dhd1',
+      diamond: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
+      other: { title: '2.180 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i' }
+    },
     1999: { title: 'Assinatura Mensal', product_hash: 'qdzyel6qgc', offer_hash: 'se0y0' },
-    1990: { title: '2.800 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i' },
     2899: { title: '2.800 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
+    3690: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
+    4990: { title: '22.400 Diamantes', product_hash: 'fs5pk2kipq', offer_hash: 'diivm29jls' },
     8399: { title: '22.400 Diamantes', product_hash: 'fs5pk2kipq', offer_hash: 'diivm29jls' }
   };
 
@@ -65,7 +73,7 @@ export default async function handler(req, res) {
     const entry = mainOfferMap[amountCents];
     mainTitle = entry.title || "Recarga Free Fire";
     if (entry.diamond) {
-      const selected = (diamonds >= 1000) ? entry.diamond : entry.other;
+      const selected = (diamonds >= 4000) ? entry.diamond : entry.other;
       productHash = selected.product_hash;
       offerHash = selected.offer_hash;
       mainTitle = selected.title || mainTitle;
@@ -85,9 +93,11 @@ export default async function handler(req, res) {
     };
     const diamondOnlyMap = {
       1290: { title: '1.060 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'oillzkbya3' },
-      3690: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
-      1990: { title: '2.800 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i' },
+      1790: { title: '2.180 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i' },
+      1990: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
       2899: { title: '2.800 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
+      3690: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
+      4990: { title: '22.400 Diamantes', product_hash: 'fs5pk2kipq', offer_hash: 'diivm29jls' },
       8399: { title: '22.400 Diamantes', product_hash: 'fs5pk2kipq', offer_hash: 'diivm29jls' }
     };
 
@@ -102,6 +112,27 @@ export default async function handler(req, res) {
         addonOfferInfo = { ...subscriptionPrices[remainder], price: remainder };
         break;
       }
+    }
+  }
+
+  // Fallback baseado nos diamantes caso ainda não tenha sido mapeado pelo preço exato
+  if (!offerHash || !productHash) {
+    if (diamonds >= 15000) {
+      productHash = 'fs5pk2kipq';
+      offerHash = 'diivm29jls';
+      mainTitle = '22.400 Diamantes';
+    } else if (diamonds >= 4000) {
+      productHash = 'apubqrxdkq';
+      offerHash = 'kr76v1dhd1';
+      mainTitle = '5.600 Diamantes';
+    } else if (diamonds >= 2000) {
+      productHash = 'iwwxcdzld2';
+      offerHash = 'b66yxism8i';
+      mainTitle = '2.180 Diamantes';
+    } else if (diamonds >= 900) {
+      productHash = 'iwwxcdzld2';
+      offerHash = 'oillzkbya3';
+      mainTitle = '1.060 Diamantes';
     }
   }
 
