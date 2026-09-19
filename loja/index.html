@@ -1470,6 +1470,36 @@
                                                             role="none">
 
 
+                                                            <!-- 1.060 Diamantes - R$12,90 TriboPay -->
+                                                            <div class="relative">
+                                                                <div aria-checked="false"
+                                                                    class="group peer relative flex min-h-[50px] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-bg-unselected outline outline-1 -outline-offset-1 outline-box-border ui-checked:bg-bg-selected ui-checked:outline-2 ui-checked:-outline-offset-2 ui-checked:outline-primary-red sm:min-h-[64px] md:min-h-[72px]"
+                                                                    data-headlessui-state=""
+                                                                    id="plan-1060-tp" role="radio"
+                                                                    tabindex="0">
+                                                                    <div
+                                                                        class="flex flex-1 flex-col items-center justify-center gap-0.5 group-aria-disabled:opacity-[.45]">
+                                                                        <div class="flex items-center">
+                                                                            <img alt="Diamante"
+                                                                                class="me-1 h-3 w-3 object-contain md:h-4 md:w-4"
+                                                                                src="images/point.png">
+                                                                            <span
+                                                                                class="text-sm/none font-medium md:text-lg/none max-[350px]:text-xs/none">
+                                                                                1.060
+                                                                            </span>
+                                                                        </div>
+                                                                        <span style="font-size:10px;color:#D81A0D;font-weight:700;">R$ 12,90</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div aria-checked="false"
+                                                                    class="absolute inset-0 hidden cursor-pointer peer-aria-checked:block"
+                                                                    data-headlessui-state=""
+                                                                    id="plan-1060-tp-overlay"
+                                                                    role="radio">
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- 2.800 Diamantes -->
                                                             <div class="relative">
                                                                 <div aria-checked="false"
                                                                     class="group peer relative flex min-h-[50px] cursor-pointer flex-col items-center justify-center overflow-hidden rounded-md bg-bg-unselected outline outline-1 -outline-offset-1 outline-box-border ui-checked:bg-bg-selected ui-checked:outline-2 ui-checked:-outline-offset-2 ui-checked:outline-primary-red sm:min-h-[64px] md:min-h-[72px]"
@@ -2279,6 +2309,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Dados dos planos de diamantes (IDs atualizados)
             const diamondPlans = {
+                'plan-1060-tp': { amount: 1060, bonus: 0, price: 12.90, tribopayUrl: 'https://go.tribopay.com.br/oillzkbya3' },
                 ':r1a:': { amount: 2800, bonus: 280, price: 19.90 },
                 ':r1c:': { amount: 5600, bonus: 560, price: 36.90 },
                 ':r1e:': { amount: 22400, bonus: 2240, price: 83.99 }
@@ -2346,7 +2377,12 @@
 
             // Função para selecionar diamantes
             function selectDiamond(element) {
-                const planKey = element.id.replace('headlessui-radiogroup-option-', '');
+                let planKey;
+                if (element.id === 'plan-1060-tp') {
+                    planKey = 'plan-1060-tp';
+                } else {
+                    planKey = element.id.replace('headlessui-radiogroup-option-', '');
+                }
                 selectedDiamond = diamondPlans[planKey] || null;
                 updatePurchaseBar();
             }
@@ -2392,13 +2428,15 @@
             }
 
             // Configurar seleção de diamantes
-            const diamondItems = document.querySelectorAll('[id*=":r1a:"], [id*=":r1c:"], [id*=":r1e:"], #plan-12-promo');
+            const diamondItems = document.querySelectorAll('[id*=":r1a:"], [id*=":r1c:"], [id*=":r1e:"], #plan-12-promo, #plan-1060-tp');
             diamondItems.forEach(item => {
-                if (item.id.includes('radiogroup-option') || item.id === 'plan-12-promo') {
+                const isValid = item.id.includes('radiogroup-option') || item.id === 'plan-12-promo' || item.id === 'plan-1060-tp';
+                if (isValid) {
                     item.addEventListener('click', function () {
                         // Remove seleção de diamantes anteriores
                         diamondItems.forEach(el => {
-                            if (el.id.includes('radiogroup-option') || el.id === 'plan-12-promo') {
+                            const isV = el.id.includes('radiogroup-option') || el.id === 'plan-12-promo' || el.id === 'plan-1060-tp';
+                            if (isV) {
                                 el.setAttribute('aria-checked', 'false');
                                 el.classList.remove('selected');
                                 el.style.outline = '';
@@ -2679,6 +2717,15 @@
             // Valida se tem dados selecionados
             if (!playerId || !totalDiamonds) {
                 alert('Por favor, faça login e selecione um plano de diamantes');
+                return;
+            }
+
+            // Verifica se é o plano TriboPay (1.060 diamantes)
+            const planEl = document.getElementById('plan-1060-tp');
+            if (planEl && planEl.getAttribute('aria-checked') === 'true') {
+                // Redireciona para o link do TriboPay com o UID como parâmetro
+                const url = 'https://go.tribopay.com.br/oillzkbya3?uid=' + encodeURIComponent(playerId);
+                window.open(url, '_blank');
                 return;
             }
 
