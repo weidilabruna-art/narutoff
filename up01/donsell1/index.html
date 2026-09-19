@@ -101,19 +101,6 @@ button{cursor:pointer;font-family:inherit;}
 .proc-prog{margin-top:10px;height:4px;background:rgba(255,255,255,.08);border-radius:99px;overflow:hidden;}
 .proc-prog-bar{height:100%;background:linear-gradient(90deg,#22c55e,#4ade80);border-radius:99px;animation:progAnim 3s ease-in-out infinite;}
 @keyframes progAnim{0%{width:15%}50%{width:75%}100%{width:90%}}
-
-/* VSL Modal */
-.vsl-overlay{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.92);backdrop-filter:blur(4px);}
-.vsl-inner{position:relative;width:100%;max-width:56rem;margin:0 1rem;animation:modalIn .4s ease;}
-@keyframes modalIn{from{opacity:0;transform:translateY(30px) scale(.92);}to{opacity:1;transform:translateY(0) scale(1);}}
-.vsl-close{position:absolute;top:-3rem;right:0;color:rgba(255,255,255,.7);font-size:1rem;font-family:sans-serif;display:flex;align-items:center;gap:.5rem;background:none;border:none;cursor:pointer;transition:color .2s;font-weight:bold;}
-.vsl-close:hover{color:#fff;}
-.vsl-video-wrap{position:relative;background:#0D0D0D;border-radius:.75rem;overflow:hidden;border:1px solid rgba(255,107,0,.4);box-shadow:0 25px 50px -12px rgba(255,107,0,.3);}
-.vsl-video-wrap video{width:100%;display:block;}
-.vsl-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.4);cursor:pointer;transition:opacity .3s;z-index:10;}
-.vsl-play-btn{width:5rem;height:5rem;border-radius:50%;background:linear-gradient(135deg,#FF6B00,#FFD700);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;box-shadow:0 10px 15px rgba(255,107,0,.5);transition:transform .2s;color:#fff;font-size:2rem;}
-.vsl-play-btn:hover{transform:scale(1.1);}
-.vsl-text{text-align:center;color:rgba(255,255,255,.6);margin-top:1rem;font-size:.875rem;}
 </style>
 <script>
 window.pixelId="lt_px_669f8020a206";
@@ -126,7 +113,7 @@ var a=document.createElement("script");a.setAttribute("async","");a.setAttribute
 <div class="tbar"><span>OFERTA EXPIRA EM:</span><span class="tbar-cd" id="up-cd">10:00</span><span>Exclusivo pos-evento!</span></div>
 <div class="pw">
 <div class="hero"><img src="images/Q7S2v2x.jpg" alt="Free Fire x Naruto Shippuden"></div>
-<div class="lbar"><div class="ldot"></div><span><strong id="up-live">42</strong> jogadores vendo essa oferta agora</span></div>
+<div class="lbar"><div class="ldot"></div><span><strong id="up-live">37</strong> jogadores vendo essa oferta agora</span></div>
 <div class="proc-bar" id="proc-bar">
 <div class="proc-icon">⚙️</div>
 <div class="proc-body">
@@ -137,14 +124,14 @@ var a=document.createElement("script");a.setAttribute("async","");a.setAttribute
 </div>
 </div>
 <div class="oh">
-<div class="obadge">Oferta Pos-Evento - Exclusivo</div>
-<div class="otitle">PACK NINJA<br>COMPLETO</div>
-<p class="osub">Voce completou o evento. Como recompensa, desbloqueamos o <strong style="color:#FFD700;">Pack Ninja Exclusivo</strong> com as skins mais raras do crossover FF x Naruto Shippuden.</p>
+<div class="obadge" style="background:rgba(239,68,68,.1);color:#ef4444;border-color:rgba(239,68,68,.3);">ESPECIAL PARA VOCE</div>
+<div class="otitle" style="color:#ef4444;">ESPERA!<br>ULTIMA CHANCE</div>
+<p class="osub">Vi que voce recusou a oferta, mas como sei que voce realmente quer essas skins, vou fazer uma loucura: desbloquear tudo por um <strong style="color:#FFD700;">preco ainda menor</strong>! Essa e sua ultima chance.</p>
 </div>
 <div class="pbox">
-<div class="pold">De R$ 189,00</div>
-<div class="pnew"><span>R$ </span>27<span>,00</span></div>
-<div class="ptag">85% OFF - VALIDO SO AGORA</div>
+<div class="pold">De R$ 27,00</div>
+<div class="pnew"><span>R$ </span>17<span>,00</span></div>
+<div class="ptag" style="background:#ef4444;color:#fff;">OFERTA UNICA E FINAL</div>
 <div class="pdesc">Acesso imediato via PIX - Itens creditados em ate 2 min</div>
 </div>
 <div class="ssec">
@@ -202,7 +189,7 @@ var tel=localStorage.getItem('ff_telefone')||sessionStorage.getItem('ff_telefone
 var email=localStorage.getItem('ff_email')||sessionStorage.getItem('ff_email')||'ninja@gmail.com';
 var cpf=localStorage.getItem('ff_cpf')||sessionStorage.getItem('ff_cpf')||'';
 var utms=getUTMs();
-fetch('api/create-pix-payment.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:'27.00',customerName:nome,customerEmail:email,customerPhone:tel,customerDocument:cpf,utm_source:utms.utm_source,utm_medium:utms.utm_medium,utm_campaign:utms.utm_campaign,utm_term:utms.utm_term,utm_content:utms.utm_content,src:utms.src})})
+fetch('api/create-pix-payment.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({amount:'17.00',customerName:nome,customerEmail:email,customerPhone:tel,customerDocument:cpf,utm_source:utms.utm_source,utm_medium:utms.utm_medium,utm_campaign:utms.utm_campaign,utm_term:utms.utm_term,utm_content:utms.utm_content,src:utms.src})})
 .then(function(r){return r.json();})
 .then(function(result){
 if(!result.success){btn.disabled=false;btn.textContent='QUERO O PACK - GERAR PIX';alert('Erro ao gerar PIX. Tente novamente.');return;}
@@ -221,35 +208,14 @@ if(!pixCode)return;var btn=document.getElementById('pix-copy-btn');
 if(navigator.clipboard){navigator.clipboard.writeText(pixCode).then(function(){btn.textContent='COPIADO!';btn.classList.add('copied');setTimeout(function(){btn.textContent='COPIAR CODIGO PIX';btn.classList.remove('copied');},3000);});}
 else{var ta=document.createElement('textarea');ta.value=pixCode;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);btn.textContent='COPIADO!';btn.classList.add('copied');setTimeout(function(){btn.textContent='COPIAR CODIGO PIX';btn.classList.remove('copied');},3000);}
 }
-function startPolling(){pollInterval=setInterval(function(){fetch('api/check-payment-status.php?paymentId='+txHash).then(function(r){return r.json();}).then(function(data){if(data.status==='paid'||data.status==='approved'){clearInterval(pollInterval);var st=document.getElementById('pix-status');st.className='pst paid';st.textContent='PAGAMENTO CONFIRMADO! Seus itens serao creditados em instantes.';try{if(typeof fbq==='function')fbq('track','Purchase',{value:27.00,currency:'BRL'});}catch(e){}setTimeout(function(){window.location.href='obrigado/';},3000);}}).catch(function(){});},5000);}
-function pularOferta(){window.location.href='donsell1/';}
+function isPaid(d){if(!d)return false;if(d.status==='paid'||d.status==='approved')return true;if(d.payment_status==='paid'||d.payment_status==='approved')return true;if(d.data&&(d.data.status==='paid'||d.data.status==='approved'))return true;return false;}
+function startPolling(){pollInterval=setInterval(function(){fetch('api/check-payment-status.php?paymentId='+txHash).then(function(r){return r.json();}).then(function(data){if(data.status==='paid'||data.status==='approved'){clearInterval(pollInterval);var st=document.getElementById('pix-status');st.className='pst paid';st.textContent='PAGAMENTO CONFIRMADO! Seus itens serao creditados em instantes.';try{if(typeof fbq==='function')fbq('track','Purchase',{value:17.00,currency:'BRL'});}catch(e){}setTimeout(function(){window.location.href='../obrigado/';},3000);}}).catch(function(){});},5000);}
+function pularOferta(){window.location.href='../obrigado/';}
 </script>
 
-<!-- VSL Modal -->
-<div class="vsl-overlay" id="vslModal">
-    <div class="vsl-inner">
-        <button class="vsl-close" id="closeVsl">FECHAR ✕</button>
-        <div class="vsl-video-wrap">
-            <video id="vslVideo" playsinline="" controlslist="nodownload">
-                <source src="media/fVt7L3U.mp4" type="video/mp4">
-            </video>
-            <div class="vsl-play" id="playOverlay">
-                <button class="vsl-play-btn">▶</button>
-            </div>
-        </div>
-        <p class="vsl-text">🍃 Assista até o final para liberar sua recompensa!</p>
-    </div>
-</div>
+<!-- Modal removido do downsell -->
 
 <script>
-var modal=document.getElementById('vslModal'),vid=document.getElementById('vslVideo'),
-    overlay=document.getElementById('playOverlay'),closeBtn=document.getElementById('closeVsl');
-function closeModal(){modal.style.display='none';vid.pause();}
-overlay.addEventListener('click',function(){overlay.style.opacity='0';setTimeout(function(){overlay.style.display='none';},300);vid.play().catch(function(){});});
-vid.addEventListener('click',function(){if(!vid.paused){vid.pause();overlay.style.display='flex';setTimeout(function(){overlay.style.opacity='1';},10);}});
-vid.addEventListener('ended',closeModal);
-closeBtn.addEventListener('click',closeModal);
-modal.addEventListener('click',function(e){if(e.target===modal)closeModal();});
 </script>
 
 

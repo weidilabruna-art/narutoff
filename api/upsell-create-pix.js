@@ -53,6 +53,11 @@ export default async function handler(req, res) {
     offerHash = '8vaca7ycir';
     amountCents = 2700;
     title = 'Pack Ninja Completo';
+  } else if (type === 'donsell1') {
+    productHash = 'zxhqqbezb9';
+    offerHash = 'wyqzb';
+    amountCents = 1700;
+    title = 'Pack Ninja Downsell';
   } else {
     // verificacao
     productHash = 'ch3xepvlc4';
