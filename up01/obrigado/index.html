@@ -76,8 +76,8 @@
 
 <script>
 // Fill in order data
-var plano = sessionStorage.getItem('plano') || 'Diamantes';
-var uid = sessionStorage.getItem('uid') || '-';
+var plano = sessionStorage.getItem('plano') || localStorage.getItem('plano') || 'Diamantes';
+var uid = localStorage.getItem('player_nickname') || sessionStorage.getItem('uid') || '-';
 document.getElementById('ty-product').textContent = plano.indexOf('Conta') !== -1 ? plano : plano + ' Diamantes';
 document.getElementById('ty-player').textContent = uid;
 </script>
