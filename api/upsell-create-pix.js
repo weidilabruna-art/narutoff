@@ -49,8 +49,8 @@ export default async function handler(req, res) {
     amountCents = 2299;
     title = 'Garena Reserve';
   } else if (type === 'up01') {
-    productHash = 'PLACEHOLDER_PRODUCT';
-    offerHash = 'PLACEHOLDER_OFFER';
+    productHash = 'zxhqqbezb9';
+    offerHash = '8vaca7ycir';
     amountCents = 2700;
     title = 'Pack Ninja Completo';
   } else {
