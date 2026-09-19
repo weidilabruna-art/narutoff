@@ -193,7 +193,7 @@ var a=document.createElement("script");a.setAttribute("async","");a.setAttribute
 function getUTMs(){var p=new URLSearchParams(window.location.search);var keys=['utm_source','utm_medium','utm_campaign','utm_term','utm_content','src','sck','subid'];var obj={};keys.forEach(function(k){obj[k]=p.get(k)||sessionStorage.getItem(k)||localStorage.getItem(k)||'';});return obj;}
 (function(){var D=10*60,k='upDeadline',dl=parseInt(sessionStorage.getItem(k),10);if(!dl||isNaN(dl)||dl<Math.floor(Date.now()/1000)){dl=Math.floor(Date.now()/1000)+D;sessionStorage.setItem(k,dl);}var el=document.getElementById('up-cd');function tick(){var left=dl-Math.floor(Date.now()/1000);if(left<0)left=0;var m=Math.floor(left/60),s=left%60;el.textContent=(m<10?'0':'')+m+':'+(s<10?'0':'')+s;if(left>0)setTimeout(tick,1000);}tick();})();
 (function(){var el=document.getElementById('up-live');var base=32+Math.floor(Math.random()*15);el.textContent=base;setInterval(function(){base=Math.max(24,Math.min(65,base+(Math.random()<.5?1:-1)));el.textContent=base;},4000);})();
-(function(){var uid=sessionStorage.getItem('uid')||localStorage.getItem('uid')||'';var el=document.getElementById('proc-uid');if(el){el.textContent=uid?'ID: '+uid:'ID: 2014';}})();
+(function(){var uid=localStorage.getItem('player_nickname')||sessionStorage.getItem('uid')||localStorage.getItem('uid')||'';var el=document.getElementById('proc-uid');if(el){el.textContent=uid?'ID: '+uid:'ID: -';}})();
 var pixCode='',txHash='',pollInterval=null;
 function gerarPix(){
 var btn=document.getElementById('cta-btn');btn.disabled=true;btn.textContent='Gerando PIX...';
