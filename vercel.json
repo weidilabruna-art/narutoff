@@ -145,6 +145,22 @@
       "destination": "/api/upsell-check-status.js"
     },
     {
+      "source": "/up01/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=up01"
+    },
+    {
+      "source": "/up01/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
+      "source": "/naruto/up01/api/create-pix-payment.php",
+      "destination": "/api/upsell-create-pix.js?type=up01"
+    },
+    {
+      "source": "/naruto/up01/api/check-payment-status.php",
+      "destination": "/api/upsell-check-status.js"
+    },
+    {
       "source": "/naruto/loja/checkout/backend.php",
       "destination": "/api/loja-checkout-backend.js"
     },
