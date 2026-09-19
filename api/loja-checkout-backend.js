@@ -47,6 +47,7 @@ export default async function handler(req, res) {
 
   const mainOfferMap = {
     899: { title: 'Assinatura Semanal', product_hash: 'qdzyel6qgc', offer_hash: 'cxv6bgyc0w' },
+    1290: { title: '1.060 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'oillzkbya3' },
     1499: { title: 'Passe Booyah Plus', product_hash: 'qdzyel6qgc', offer_hash: 'wwmme' },
     3690: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
     1999: { title: 'Assinatura Mensal', product_hash: 'qdzyel6qgc', offer_hash: 'se0y0' },
@@ -83,6 +84,7 @@ export default async function handler(req, res) {
       1999: { title: 'Assinatura Mensal', product_hash: 'qdzyel6qgc', offer_hash: 'se0y0' }
     };
     const diamondOnlyMap = {
+      1290: { title: '1.060 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'oillzkbya3' },
       3690: { title: '5.600 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
       1990: { title: '2.800 Diamantes', product_hash: 'iwwxcdzld2', offer_hash: 'b66yxism8i' },
       2899: { title: '2.800 Diamantes', product_hash: 'apubqrxdkq', offer_hash: 'kr76v1dhd1' },
