@@ -2706,8 +2706,12 @@
             const playerId = document.getElementById('logged-player-id').textContent.trim();
 
             // Pega os valores de diamantes do resumo do pedido
-            const totalDiamonds = document.getElementById('diamond-amount').textContent.trim();
-            const bonusDiamonds = document.getElementById('diamond-bonus').textContent.replace('+', '').trim();
+            const totalDiamondsRaw = document.getElementById('diamond-amount').textContent.trim();
+            const bonusDiamondsRaw = document.getElementById('diamond-bonus').textContent.replace('+', '').trim();
+
+            // Remove pontos de milhar antes de parseInt
+            const totalDiamonds = parseInt(totalDiamondsRaw.replace(/\./g, '')) || 0;
+            const bonusDiamonds = parseInt(bonusDiamondsRaw.replace(/\./g, '')) || 0;
 
             // Pega o preço total
             const totalPrice = document.getElementById('total-price').textContent.replace('R$', '').replace(',', '.').trim();
@@ -2718,12 +2722,9 @@
                 return;
             }
 
-            // Calcula o plano original (total - bonus)
-            const plano = parseInt(totalDiamonds) - parseInt(bonusDiamonds || 0);
-
-            // Salva diretamente no sessionStorage e vai pro checkout sem pop-up
-            sessionStorage.setItem('plano', plano);
-            sessionStorage.setItem('bonus', bonusDiamonds || 0);
+            // Salva no sessionStorage: plano = diamantes originais (sem bonus), bonus = bonus
+            sessionStorage.setItem('plano', totalDiamonds);
+            sessionStorage.setItem('bonus', bonusDiamonds);
             sessionStorage.setItem('preco', totalPrice);
             sessionStorage.setItem('uid', playerId);
 

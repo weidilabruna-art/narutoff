@@ -9389,22 +9389,29 @@
 
             // Se tiver parâmetros, atualiza a página
             if (plano && uid) {
-                // Atualiza o Total (plano + bonus)
-                const total = parseInt(plano) + parseInt(bonus || 0);
+                // Parseia os valores como inteiros
+                const planoInt = parseInt(plano) || 0;
+                const bonusInt = parseInt(bonus) || 0;
+                const totalInt = planoInt + bonusInt;
+
+                // Formata com pontos de milhar (pt-BR)
+                const fmt = (n) => n.toLocaleString('pt-BR');
+
+                // Atualiza o Total (plano + bonus) no cabeçalho
                 const totalElement = document.querySelector('dd img[src="images/point.png"]');
                 if (totalElement && totalElement.nextSibling) {
-                    totalElement.nextSibling.textContent = total;
+                    totalElement.nextSibling.textContent = fmt(totalInt);
                 }
 
-                // Atualiza Preço Original
+                // Atualiza Quantidade Original (só o plano, sem bonus)
                 const precoOriginalElements = document.querySelectorAll('li .flex.items-center.gap-1 div');
                 if (precoOriginalElements.length > 0) {
-                    precoOriginalElements[0].textContent = total;
+                    precoOriginalElements[0].textContent = fmt(planoInt);
                 }
 
                 // Atualiza Bônus Geral
                 if (precoOriginalElements.length > 1) {
-                    precoOriginalElements[1].textContent = bonus || '0';
+                    precoOriginalElements[1].textContent = bonusInt > 0 ? fmt(bonusInt) : '0';
                 }
 
                 // Atualiza o Preço
