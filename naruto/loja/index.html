@@ -2307,10 +2307,10 @@
         document.addEventListener('DOMContentLoaded', function () {
             // Dados dos planos de diamantes (IDs atualizados)
             const diamondPlans = {
-                'plan-1060-tp': { amount: 1060, bonus: 0, price: 12.90 },
-                ':r1a:': { amount: 2180, bonus: 218, price: 17.90 },
-                ':r1c:': { amount: 5600, bonus: 560, price: 19.90 },
-                ':r1e:': { amount: 22400, bonus: 2240, price: 49.90 }
+                'plan-1060-tp': { amount: 1060, bonus: 212, price: 12.90 },
+                ':r1a:': { amount: 2180, bonus: 436, price: 19.90 },
+                ':r1c:': { amount: 5600, bonus: 1120, price: 36.90 },
+                ':r1e:': { amount: 22400, bonus: 4480, price: 83.99 }
             };
 
             // Dados das ofertas especiais (order bump)
@@ -2640,11 +2640,11 @@
 
         // Mapeamento de upgrades por preço: preco selecionado -> oferta de upgrade
         var _presellUpgradeMap = {
-            '12.90': { plano: 2180, bonus: 218, regularPrice: 17.90, offerPrice: 14.90 },
-            '14.90': { plano: 5600, bonus: 560, regularPrice: 19.90, offerPrice: 15.00 },
-            '17.90': { plano: 5600, bonus: 560, regularPrice: 39.90, offerPrice: 21.90 },
-            '19.90': { plano: 22400, bonus: 2240, regularPrice: 49.90, offerPrice: 31.90 },
-            '49.90': null
+            '12.90': { plano: 2180, bonus: 436, regularPrice: 19.90, offerPrice: 14.90 },
+            '14.90': { plano: 5600, bonus: 1120, regularPrice: 36.90, offerPrice: 15.00 },
+            '19.90': { plano: 5600, bonus: 1120, regularPrice: 36.90, offerPrice: 21.90 },
+            '36.90': { plano: 22400, bonus: 4480, regularPrice: 83.99, offerPrice: 31.90 },
+            '83.99': null
         };
 
         function showPresellModal() {
