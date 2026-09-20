@@ -2342,9 +2342,9 @@
                 }
 
                 // Mostra os diamantes selecionados
-                diamondAmount.textContent = selectedDiamond.amount;
+                diamondAmount.textContent = selectedDiamond.amount.toLocaleString('pt-BR');
                 if (selectedDiamond.bonus > 0) {
-                    diamondBonus.textContent = '+ ' + selectedDiamond.bonus;
+                    diamondBonus.textContent = '+ ' + selectedDiamond.bonus.toLocaleString('pt-BR');
                     diamondBonus.style.display = 'inline';
                 } else {
                     diamondBonus.style.display = 'none';
@@ -2660,7 +2660,7 @@
 
             // Preenche diamantes do upgrade
             var gemSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#38bdf8" style="display:inline;vertical-align:-2px;margin-left:5px"><path d="M8 2h8l4 6H4L8 2zm-4 8h16L12 22 4 10z"/></svg>';
-            var upBonusStr = upgrade.bonus > 0 ? ' + ' + upgrade.bonus + ' bônus' : '';
+            var upBonusStr = upgrade.bonus > 0 ? ' + ' + upgrade.bonus.toLocaleString('pt-BR') + ' bônus' : '';
             document.getElementById('pressel-upgrade-diamonds').innerHTML = upgrade.plano.toLocaleString('pt-BR') + upBonusStr + gemSvg;
             document.getElementById('pressel-upgrade-regular').textContent = 'R$ ' + upgrade.regularPrice.toFixed(2).replace('.', ',');
             document.getElementById('pressel-upgrade-offer').textContent = 'R$ ' + upgrade.offerPrice.toFixed(2).replace('.', ',');
