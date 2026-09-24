@@ -549,18 +549,24 @@
 
             // Base params from customer data
             const query = new URLSearchParams();
-            if (customerData) {
-                if (customerData.customer_name) query.set('customerName', customerData.customer_name);
-                if (customerData.customer_email) query.set('customerEmail', customerData.customer_email);
-                if (customerData.customer_document) query.set('customerDocument', customerData.customer_document);
-                if (customerData.customer_phone) query.set('customerPhone', customerData.customer_phone);
-            }
+
+            // Se customerData for null, tenta recuperar do localStorage
+            const cd = customerData || {
+                customer_name: localStorage.getItem('ff_nome') || '',
+                customer_email: localStorage.getItem('ff_email') || '',
+                customer_phone: localStorage.getItem('ff_telefone') || '',
+                customer_document: ''
+            };
+
+            if (cd.customer_name) query.set('customerName', cd.customer_name);
+            if (cd.customer_email) query.set('customerEmail', cd.customer_email);
+            if (cd.customer_document) query.set('customerDocument', cd.customer_document);
+            if (cd.customer_phone) query.set('customerPhone', cd.customer_phone);
 
             // Append existing UTMs/Cookies from current URL
             const currentParams = new URLSearchParams(window.location.search);
             currentParams.forEach((value, key) => {
-                // Determine if we should overwrite or append. Usually, we want to keep original UTMs.
-                // If the key is not already set by customer data, add it.
+                // Mantém UTMs originais, não sobrescreve dados do cliente
                 if (!query.has(key)) {
                     query.set(key, value);
                 }
