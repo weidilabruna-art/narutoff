@@ -30,10 +30,10 @@ function showAd2() {
 
                         setTimeout(() => {
                             document.getElementById('finalButton').classList.remove('hidden');
-                        }, 2000);
-                    }, 4000);
-                }, 2000);
-            }, 2000);
-        }, 2000);
-    }, 3000);
+                        }, 500);
+                    }, 800);
+                }, 600);
+            }, 600);
+        }, 600);
+    }, 800);
 }
