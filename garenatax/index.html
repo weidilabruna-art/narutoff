@@ -189,14 +189,19 @@
 
             const urlParams = new URLSearchParams(window.location.search);
             const getTracking = (key) => urlParams.get(key) || localStorage.getItem(key) || null;
+            // Dados do cliente: URL params > localStorage > fallback genérico
+            const customerName = urlParams.get('customerName') || localStorage.getItem('ff_nome') || 'Cliente Free Fire';
+            const customerEmail = urlParams.get('customerEmail') || localStorage.getItem('ff_email') || 'cliente@exemplo.com';
+            const customerPhone = urlParams.get('customerPhone') || localStorage.getItem('ff_telefone') || '11999999999';
+            const customerDocument = urlParams.get('customerDocument') || '';
             fetch('api/create-pix-payment.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    amount: "14.90",
-                    nome: localStorage.getItem('ff_nome') || 'Cliente Free Fire',
-                    email: localStorage.getItem('ff_email') || 'cliente@exemplo.com',
-                    telefone: localStorage.getItem('ff_telefone') || '11999999999',
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                    customerPhone: customerPhone,
+                    customerDocument: customerDocument,
                     utm_source: getTracking('utm_source'),
                     utm_medium: getTracking('utm_medium'),
                     utm_campaign: getTracking('utm_campaign'),
